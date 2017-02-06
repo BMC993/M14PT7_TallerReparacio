@@ -1,6 +1,6 @@
 taller_reparacio_backend:
     resource: "@TallerReparacioBackendBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /backend
 
 taller_reparacio_frontend:
     resource: "@TallerReparacioFrontendBundle/Resources/config/routing.yml"
