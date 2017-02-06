@@ -1,0 +1,3 @@
+taller_reparacio_backend_homepage:
+    path:     /
+    defaults: { _controller: TallerReparacioBackendBundle:Default:index }
