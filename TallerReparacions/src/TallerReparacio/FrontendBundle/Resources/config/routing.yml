@@ -1,3 +1,11 @@
 taller_reparacio_frontend_homepage:
     path:     /
     defaults: { _controller: TallerReparacioFrontendBundle:Default:index }
+
+taller_reparacio_frontend_historic:
+    path:     /historic
+    defaults: { _controller: TallerReparacioFrontendBundle:Default:historic }
+
+taller_reparacio_frontend_login:
+    path:     /login
+    defaults: { _controller: TallerReparacioFrontendBundle:Default:login }

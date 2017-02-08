@@ -1,3 +1,83 @@
 taller_reparacio_backend_homepage:
     path:     /
     defaults: { _controller: TallerReparacioBackendBundle:Default:index }
+
+taller_reparacio_backend_consultar_clients:
+    path:     /clients
+    defaults: { _controller: TallerReparacioBackendBundle:Clients:mostrar }
+
+taller_reparacio_backend_eliminar_clients:
+    path:     /clients/eliminar
+    defaults: { _controller: TallerReparacioBackendBundle:Clients:eliminar }
+
+taller_reparacio_backend_editar_clients:
+    path:     /clients/editar
+    defaults: { _controller: TallerReparacioBackendBundle:Clients:editar }
+
+taller_reparacio_backend_afegir_clients:
+    path:     /clients/afegir
+    defaults: { _controller: TallerReparacioBackendBundle:Clients:afegir }
+
+taller_reparacio_backend_consultar_vehicles:
+    path:     /vehicles
+    defaults: { _controller: TallerReparacioBackendBundle:Vehicles:mostrar }
+
+taller_reparacio_backend_eliminar_vehicles:
+    path:     /vehicles/eliminar
+    defaults: { _controller: TallerReparacioBackendBundle:Vehicles:eliminar }
+
+taller_reparacio_backend_editar_vehicles:
+    path:     /vehicles/editar
+    defaults: { _controller: TallerReparacioBackendBundle:Vehicles:editar }
+
+taller_reparacio_backend_afegir_vehicles:
+    path:     /vehicles/afegir
+    defaults: { _controller: TallerReparacioBackendBundle:Vehicles:afegir }
+
+taller_reparacio_backend_consultar_reparacions:
+    path:     /reparacions
+    defaults: { _controller: TallerReparacioBackendBundle:Reparacions:mostrar }
+
+taller_reparacio_backend_eliminar_reparacions:
+    path:     /reparacions/eliminar
+    defaults: { _controller: TallerReparacioBackendBundle:Reparacions:eliminar }
+
+taller_reparacio_backend_editar_reparacions:
+    path:     /reparacions/editar
+    defaults: { _controller: TallerReparacioBackendBundle:Reparacions:editar }
+
+taller_reparacio_backend_afegir_reparacions:
+    path:     /reparacions/afegir
+    defaults: { _controller: TallerReparacioBackendBundle:Reparacions:afegir }
+
+taller_reparacio_backend_consultar_mecanics:
+    path:     /mecanics
+    defaults: { _controller: TallerReparacioBackendBundle:Mecanics:mostrar }
+
+taller_reparacio_backend_eliminar_mecanics:
+    path:     /mecanics/eliminar
+    defaults: { _controller: TallerReparacioBackendBundle:Mecanics:eliminar }
+
+taller_reparacio_backend_editar_mecanics:
+    path:     /mecanics/editar
+    defaults: { _controller: TallerReparacioBackendBundle:Mecanics:editar }
+
+taller_reparacio_backend_afegir_mecanics:
+    path:     /mecanics/afegir
+    defaults: { _controller: TallerReparacioBackendBundle:Mecanics:afegir }
+
+taller_reparacio_backend_consultar_equips_mecanics:
+    path:     /equips-mecanics
+    defaults: { _controller: TallerReparacioBackendBundle:EquipsMecanics:mostrar }
+
+taller_reparacio_backend_consultar_eliminar_mecanics:
+    path:     /equips-mecanics/eliminar
+    defaults: { _controller: TallerReparacioBackendBundle:EquipsMecanics:eliminar }
+
+taller_reparacio_backend_consultar_editar_mecanics:
+    path:     /equips-mecanics/editar
+    defaults: { _controller: TallerReparacioBackendBundle:EquipsMecanics:editar }
+
+taller_reparacio_backend_consultar_afegir_mecanics:
+    path:     /equips-mecanics/afegir
+    defaults: { _controller: TallerReparacioBackendBundle:EquipsMecanics:afegir }
