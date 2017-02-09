@@ -1,72 +1,14 @@
 {% extends "::base.html.twig " %}
-{% block body %} asdfgh.cssex{% endblock %}
-
-
-
-
-{% block title %}Welcome to our BACKEND Shop!{% endblock %}
-    {% block stylesheets %}
-        
-        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-
-        <link href="{{ asset('css/shop-homepage.css') }}" rel="stylesheet">
-
-    {% endblock %}
-    {% block body %}
-        {% block navigation %}
-            <li class="active"><a href="#">Home</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Action</a></li>
-                  <li><a href="#">Another action</a></li>
-                  <li><a href="#">Something else here</a></li>
-                  <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                </ul>
-              </li>
-        {% endblock %}
-
-        {% block page_content %}
-            <!-- Page Content -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h4>BACKEND - Manteniment de la botiga.</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc feugiat neque dolor, non rhoncus nulla molestie sagittis. Mauris quis tortor viverra, sollicitudin lectus id, tempor risus. Sed tempus rutrum diam fringilla iaculis. Quisque mollis elit eget ex venenatis, vel pretium ipsum aliquet. Nulla convallis scelerisque metus quis tempus. Cras vestibulum imperdiet neque. Vestibulum in tortor lorem. Pellentesque lobortis orci vel euismod placerat. Aenean congue lacus urna, vel interdum orci lobortis et. Sed nunc nibh, mollis nec justo id, egestas placerat velit. Ut nec dapibus arcu. Suspendisse fringilla ultricies velit, in pharetra lacus commodo ut. Nullam tincidunt malesuada velit, quis elementum lacus tristique eget. Etiam non dolor tempor, cursus massa sit amet, vestibulum massa.</p>
-                        <p>Ut pharetra dolor leo, sed faucibus nunc pharetra ut. Pellentesque in nibh malesuada, vulputate urna non, tincidunt nisi. Nam sodales justo justo, dictum accumsan libero auctor a. Donec eu interdum nisl. Vestibulum vitae sem tincidunt, posuere mi nec, vehicula augue. Praesent nibh sem, porta id lobortis et, viverra ac urna. Nullam cursus diam sed justo tristique, eleifend pellentesque sem dapibus. Integer eu neque aliquet, blandit ipsum commodo, fringilla magna. Nunc ultricies diam risus, et fermentum est semper ut. Fusce molestie hendrerit lectus, vitae varius justo tincidunt vel. Pellentesque sit amet purus vehicula, venenatis libero id, tempor elit. Vestibulum ac massa faucibus, interdum mauris quis, vulputate risus.</p>
-                    </div>
-                </div>
-            </div>
-            <!-- /.container -->
-        {% endblock %}
-
-        <div class="container">
-            <hr>
-            <!-- Footer -->
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright &copy; Your Website 2017</p>
-                    </div>
-                </div>
-            </footer>
-        </div>
-        <!-- /.container -->
-    {% endblock %}
-
-    {% block javascripts %}
-        <!-- jQuery -->
-        <script src="{{ asset('js/jquery.js') }}"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    {% endblock %}
-
-</body>
-
-</html>
+{% block title %}Taller Reparacions{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+{% block navigation %}
+	<li class="active"><a href="#">Inici</a></li>
+		<li><a href="#">Historic</a></li>
+		<li><a href="#">login</a></li>
+	</li>
+{% endblock %}
+{% block page_content %}
+Aixo es el frontend
+{% endblock %}
