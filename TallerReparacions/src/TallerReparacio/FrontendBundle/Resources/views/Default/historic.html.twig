@@ -1,0 +1,23 @@
+{% extends "TallerReparacioFrontendBundle:Default:index.html.twig " %}
+{% block title %}Clients{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+{% block navigation %}
+	{{ parent() }}
+{% endblock %}
+{% block page_content %}
+
+<div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <h4 class="">{{ titol }}</h4>
+            </div>
+            {% for c in clients %}
+                <div class="col-sm-12 col-lg-12 col-md-12">
+                    <p>{{ c.nom|upper }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
