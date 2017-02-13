@@ -20,5 +20,4 @@ class DefaultController extends Controller
             'titol' => 'Llistat de CLIEEEEEEEEEEEEEEEEEEEENTS',
             'clients' => $clients));
     }
-
 }
