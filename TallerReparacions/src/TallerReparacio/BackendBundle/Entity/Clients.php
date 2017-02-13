@@ -25,7 +25,6 @@ class Clients
      * @var string
      *
      * @ORM\Column(name="NIF", type="string", length=10, unique=true)
-     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $nIF;
 
