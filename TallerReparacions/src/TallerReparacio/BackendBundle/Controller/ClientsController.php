@@ -21,34 +21,29 @@ class ClientsController extends Controller
     {
         $clients = $this->getDoctrine()->getRepository('TallerReparacioBackendBundle:Clients')->findAll();
 
-        return $this->render('TallerReparacioFrontendBundle:Default:historic.html.twig', array(
+        return $this->render('TallerReparacioBackendBundle:Default:clients.html.twig', array(
             'titol' => 'Llistat de CLIEEEEEEEEEEEEEEEEEEEENTS',
             'clients' => $clients));
     }
 
-    public function  formAfegirClientAction(){
+    public function formAfegirClientAction(){
         return $this->render('TallerReparacioBackendBundle:Default:formAfegirClient.html.twig');
     }
 
     public function eliminarAction($nif) {
- 
- 
-        //Entity Manager
-        $em = $this->getDoctrine()->getEntityManager();
-        $posts = $em->getRepository("BackendBundle:Clients");
- 
-        $post = $posts->find($nif);
-        $em->remove($post);
-        $flush=$em->flush();
- 
-        if ($flush == null) {
-            echo "Client eliminat correctament";
-        } else {
-            echo "El client no s'ha borrat";
+
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
+
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No existeix el client amb el nif: '.$nif
+            );
         }
- 
- 
-        die();
+        $em->remove($product);
+        $em->flush();
+
+        return $this->redirectToRoute('taller_reparacio_backend_consultar_clients');
     }
 
     public function afegirClientAction(Request $request) {
