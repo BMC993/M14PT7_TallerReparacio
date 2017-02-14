@@ -29,6 +29,26 @@ class ClientsController extends Controller
         return $this->render('TallerReparacioBackendBundle:Default:formAfegirClient.html.twig');
     }
 
+    public function eliminarAction($nif) {
+ 
+ 
+        //Entity Manager
+        $em = $this->getDoctrine()->getEntityManager();
+        $posts = $em->getRepository("BackendBundle:Clients");
+ 
+        $post = $posts->find($nif);
+        $em->remove($post);
+        $flush=$em->flush();
+ 
+        if ($flush == null) {
+            echo "Client eliminat correctament";
+        } else {
+            echo "El client no s'ha borrat";
+        }
+ 
+ 
+        die();
+    }
 
     /* public function afegirClientAction(Request $request) {
         // crea una categoria y le asigna algunos datos ficticios para este ejemplo

@@ -7,7 +7,7 @@ taller_reparacio_backend_consultar_clients:
     defaults: { _controller: TallerReparacioBackendBundle:Clients:mostrar }
 
 taller_reparacio_backend_eliminar_clients:
-    path:     /clients/eliminar
+    path:     /clients/eliminar/{nif}
     defaults: { _controller: TallerReparacioBackendBundle:Clients:eliminar }
 
 taller_reparacio_backend_editar_clients:
