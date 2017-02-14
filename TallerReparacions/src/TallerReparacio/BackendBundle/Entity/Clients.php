@@ -31,6 +31,13 @@ class Clients
     /**
      * @var string
      *
+     * @ORM\Column(name="foto", type="string", length=255)
+     */
+    private $foto;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
@@ -128,6 +135,30 @@ class Clients
     public function getCognom()
     {
         return $this->cognom;
+    }
+
+    /**
+     * Set foto
+     *
+     * @param string $foto
+     *
+     * @return Clients
+     */
+    public function setFoto($foto)
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * Get foto
+     *
+     * @return string
+     */
+    public function getFoto()
+    {
+        return $this->foto;
     }
 }
 
