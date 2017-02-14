@@ -1,11 +1,12 @@
 {% extends "::base.html.twig " %}
 
-{% block title %}Hola administrador, benvingut al Backend{% endblock %}
+{% block title %}Benvingut al Backend{% endblock %}
     {% block stylesheets %}
         {{ parent() }} 
     {% endblock %}
         {% block navigation %}
             <li class="active"><a href="#">Inici</a></li>
+              <li><a href="{{ path('taller_reparacio_backend_formAfegir_clients') }}">Clients</a><li>
               <li><a href="#">Vehicles</a></li>
               <li><a href="#">Reparacions</a></li>
               <li><a href="#">Mecànics</a></li>

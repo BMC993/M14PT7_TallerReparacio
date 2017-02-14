@@ -14,9 +14,13 @@ taller_reparacio_backend_editar_clients:
     path:     /clients/editar
     defaults: { _controller: TallerReparacioBackendBundle:Clients:editar }
 
-taller_reparacio_backend_afegir_clients:
+taller_reparacio_backend_formAfegir_clients:
     path:     /clients/afegir
-    defaults: { _controller: TallerReparacioBackendBundle:Clients:afegir }
+    defaults: { _controller: TallerReparacioBackendBundle:Clients:formAfegirClient }
+
+taller_reparacio_backend_afegir_clients:
+
+    defaults: { _controller: TallerReparacioBackendBundle:Clients:afegirClient }
 
 taller_reparacio_backend_consultar_vehicles:
     path:     /vehicles

@@ -25,14 +25,18 @@ class ClientsController extends Controller
             'clients' => $clients));
     }
 
-     public function afegirAction(Request $request)
-    {
+    public function  formAfegirClientAction(){
+        return $this->render('TallerReparacioBackendBundle:Default:index.html.twig');
+    }
+
+
+    /* public function afegirClientAction(Request $request) {
         // crea una categoria y le asigna algunos datos ficticios para este ejemplo
         $Clients= new Clients();
         $Vehicles = new Vehicles();
         // $category->setName('tato');
  
-        $form = $this->createFormBuilder($Clients)
+        $form = $this->createFormBuilder($Clients) 
             ->add('nIF', TextType::class, array('label' => 'NIF'))
             ->add('nom', TextType::class, array('label' => 'Nom'))
             ->add('cognom', TextType::class, array('label' => 'Cognom'))
@@ -74,7 +78,7 @@ class ClientsController extends Controller
             'titol' => 'Afegir Categoria',
             'form' => $form->createView(),
         ));
-    }
+    } */
 
 }
-}
+

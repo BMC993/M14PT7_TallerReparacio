@@ -1,0 +1,13 @@
+{% extends "TallerReparacioBackendBundle:Default:index.html.twig " %}
+{% block title %}Afegir Client{% endblock %}
+{% block page_content %}
+<form action="{{ path('taller_reparacio_backend_afegir_clients') }}">
+	<input type="text" name="nif"><br/>
+	<input type="text" name="nom"></br>
+	<input type="text" name="cognom"></br>
+	<input type="text" name="matricula"></br>
+	<input type="text" name="marca"></br>
+	<input type="text" name="model"></br>
+	<input type="text" name="tipusCombustible"></br>
+</form>
+{% endblock %}
