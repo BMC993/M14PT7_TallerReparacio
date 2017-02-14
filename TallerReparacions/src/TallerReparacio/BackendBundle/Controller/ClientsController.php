@@ -4,7 +4,8 @@ namespace TallerReparacio\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use MusicShop\FrontendBundle\Entity\Clients;
+use TallerReparacio\BackendBundle\Entity\Clients;
+use TallerReparacio\BackendBundle\Entity\Vehicles;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -50,55 +51,38 @@ class ClientsController extends Controller
         die();
     }
 
-    /* public function afegirClientAction(Request $request) {
+    public function afegirClientAction(Request $request) {
         // crea una categoria y le asigna algunos datos ficticios para este ejemplo
+        $em = $this->getDoctrine()->getManager();
         $Clients= new Clients();
         $Vehicles = new Vehicles();
         // $category->setName('tato');
- 
-        $form = $this->createFormBuilder($Clients) 
-            ->add('nIF', TextType::class, array('label' => 'NIF'))
-            ->add('nom', TextType::class, array('label' => 'Nom'))
-            ->add('cognom', TextType::class, array('label' => 'Cognom'))
-            ->add('matricula', TextType::class, array('label' => 'Matricula Cotxe'))
-            ->add('marca', TextType::class, array('label' => 'Marca'))
-            ->add('vehicle', TextType::class, array('label' => 'Vehicle'))
-            ->add('model', TextType::class, array('label' => 'Model'))
-            ->add('tipusCombustible', TextType::class, array('label' => 'Tipus Combustible'))
-            ->add('save', SubmitType::class, array('label' => 'Crear Categoria'))
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
-            $Clients->setNIF($form->getNIF())
-            $Clients->setNom($form->getNom())
-            $Clients->setCognom($form->getCognom())
-            $Vehicles->setMatricula($form->getMatricula())
-            $Vehicles->setMarca($form->getMarca())
-            $Vehicles->setVehicle($form->getVehicle())
-            $Vehicles->setModel($form->getModel())
-            $Vehicles->setTipusCombustible($form->getTipusCombustible())
+        
+        var_dump("expression");
+        if($request != null){
+            var_dump("Haey");
+            $Clients->setNIF($request->request->get('nif'));
+            $Clients->setNom($request->request->get('nom'));
+            $Clients->setCognom($request->request->get('cognom'));
+            $Vehicles->setMatricula($request->request->get('matricula'));
+            $Vehicles->setMarca($request->request->get('marca'));
+            $Vehicles->setModel($request->request->get('model'));
+            $Vehicles->setTipusCombustible($request->request->get('tipusCombustible'));
+            $Clients->setVehicle($Vehicles);
 
 
             // ... perform some action, such as saving the task to the database
             // for example, if Category is a Doctrine entity, save it!
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($category);
+            
+            $em->persist($Clients);
+            $em->persist($Vehicles);
             $em->flush();
 
-            return $this->render('MusicShopBackendBundle:Default:categoryAdded.html.twig', array(
-            'titol' => 'Nova categoria afegida',
-            'name' => $category->getName()));
+            return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
+            'titol' => 'Nou client afegit',
+            'name' => $Clients->getNom()));
         }
- 
-        return $this->render('MusicShopBackendBundle:Default:addCategory.html.twig', array(
-            'titol' => 'Afegir Categoria',
-            'form' => $form->createView(),
-        ));
-    } */
+    } 
 
 }
 
