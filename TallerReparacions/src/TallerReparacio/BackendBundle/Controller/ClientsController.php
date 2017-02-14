@@ -4,7 +4,7 @@ namespace TallerReparacio\BackendBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use MusicShop\FrontendBundle\Entity\Categories;
+use MusicShop\FrontendBundle\Entity\Clients;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -14,6 +14,15 @@ class ClientsController extends Controller
     public function indexAction()
     {
         return $this->render('TallerReparacioBackendBundle:Default:index.html.twig');
+    }
+
+    public function mostrarAction()
+    {
+        $clients = $this->getDoctrine()->getRepository('TallerReparacioBackendBundle:Clients')->findAll();
+
+        return $this->render('TallerReparacioFrontendBundle:Default:historic.html.twig', array(
+            'titol' => 'Llistat de CLIEEEEEEEEEEEEEEEEEEEENTS',
+            'clients' => $clients));
     }
 
      public function afegirAction(Request $request)
