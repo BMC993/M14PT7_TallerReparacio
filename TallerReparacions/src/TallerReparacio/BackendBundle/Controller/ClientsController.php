@@ -26,7 +26,7 @@ class ClientsController extends Controller
     }
 
     public function  formAfegirClientAction(){
-        return $this->render('TallerReparacioBackendBundle:Default:index.html.twig');
+        return $this->render('TallerReparacioBackendBundle:Default:formAfegirClient.html.twig');
     }
 
 
