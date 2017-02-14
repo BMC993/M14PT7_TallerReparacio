@@ -9,15 +9,19 @@
 {% block page_content %}
 
 <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-lg-12 col-md-12">
-                <h4 class="">{{ titol }}</h4>
-            </div>
-            {% for c in clients %}
-                <div class="col-sm-12 col-lg-12 col-md-12">
-                    <p>{{ c.nom|upper }}</p>
-                </div>
-            {% endfor %}
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <h4 class="">{{ titol }}</h4>
         </div>
+        {% for c in clients %}
+            <div class="col-sm-3 col-lg-3 col-md-3 text-center">
+                <img class="img-responsive" src={{ c.foto }} style="width:100%;" />
+                <h3>{{ c.nom }} {{ c.cognom }}</h3>
+                <p>{{ c.nif }}</p>
+                <a class="btn btn-primary" href="{{ path('taller_reparacio_backend_editar_clients') }}">Editar</a>
+                <a class="btn btn-danger" href="{{ path('taller_reparacio_backend_eliminar_clients') }}">Eliminar</a>
+            </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock %}
