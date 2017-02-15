@@ -50,8 +50,7 @@ class Clients
     private $cognom;
 
  /**
-     * @ORM\OneToOne(targetEntity="Vehicles", inversedBy="clients")
-     * @ORM\JoinColumn(name="vehicles_matricula", referencedColumnName="matricula")
+     * @ORM\OneToOne(targetEntity="Vehicles", mappedBy="clients")
      */
     protected $vehicle;
 
