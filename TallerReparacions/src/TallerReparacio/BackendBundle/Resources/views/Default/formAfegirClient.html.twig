@@ -1,27 +1,25 @@
 {% extends "TallerReparacioBackendBundle:Default:index.html.twig " %}
 {% block title %}Afegir Client{% endblock %}
-	{% block page_content %}
-		<div class="container-fluid">
-			<div class="container">
-				<div class="contingut row">
-					<div class="col-xs-12">
-						<form action="{{ path('taller_reparacio_backend_afegir_clients') }}" method="post">
-							<div class="form-grup">
-								<h1>Afegir Client</h1></br>
-								NIF: <input class="form-control" type="text" name="nif"><br/>
-								Nom: <input class="form-control" type="text" name="nom"></br>
-								Cognom: <input class="form-control" type="text" name="cognom"></br>
-								Foto: <input class="form-control" type="text" name="foto"></br>
-								<h2>Dades Vehicle Client</h2></br>
-								Matricula: <input class="form-control" type="text" name="matricula"></br>
-								Marca: <input class="form-control" type="text" name="marca"></br>
-								Model: <input class="form-control" type="text" name="model"></br>
-								Tipus Combustible: <input class="form-control" type="text" name="tipusCombustible"></br>
-								<input class="btn btn-default" type="submit" name="submit" value="Afegir">
-							</div>
-						</form>
+{% block page_content %}
+	<div class="container">
+		<div class="contingut row">
+			<div class="col-xs-12">
+				<form action="{{ path('taller_reparacio_backend_afegir_clients') }}" method="post">
+					<div class="form-grup">
+						<h1>Afegir Client</h1></br>
+						NIF: <input class="form-control" type="text" name="nif"><br/>
+						Nom: <input class="form-control" type="text" name="nom"></br>
+						Cognom: <input class="form-control" type="text" name="cognom"></br>
+						Foto: <input class="form-control" type="text" name="foto"></br>
+						<h2>Dades Vehicle Client</h2></br>
+						Matricula: <input class="form-control" type="text" name="matricula"></br>
+						Marca: <input class="form-control" type="text" name="marca"></br>
+						Model: <input class="form-control" type="text" name="model"></br>
+						Tipus Combustible: <input class="form-control" type="text" name="tipusCombustible"></br>
+						<input class="btn btn-default" type="submit" name="submit" value="Afegir">
 					</div>
-				</div>
+				</form>
 			</div>
 		</div>
-	{% endblock %}
+	</div>
+{% endblock %}

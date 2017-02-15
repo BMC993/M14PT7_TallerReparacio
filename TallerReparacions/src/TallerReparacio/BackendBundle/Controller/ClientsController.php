@@ -26,24 +26,68 @@ class ClientsController extends Controller
             'clients' => $clients));
     }
 
-    public function formAfegirClientAction(){
-        return $this->render('TallerReparacioBackendBundle:Default:formAfegirClient.html.twig');
+    public function formEditarClientAction($nif)
+    {
+
+        $em = $this->getDoctrine()->getManager();
+        $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
+
+        if (!$client) {
+            throw $this->createNotFoundException(
+                'No existeix el client amb el nif: '.$nif
+            );
+        }
+
+        return $this->render('TallerReparacioBackendBundle:Default:formEditarClient.html.twig', array(
+            'titol' => 'Editar client',
+            'client' => $client));
+    }
+
+    public function editarClientAction(Request $request)
+    {
+        if($request != null){
+
+            $nif = $request->request->get('nif');
+
+            $em = $this->getDoctrine()->getManager();
+            $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
+
+            $nom->$request->request->get('nom');
+            $cognom->$request->request->get('cognom');
+            $foto->$request->request->get('foto');
+
+            $client->setNom($nom);
+            $client->setCognom($cognom);
+            $client->setFoto($foto);
+
+        }
+
+        $em->flush();
+
+        return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
+        'titol' => 'Client editat correctament!',
+        'client' => $client));
+
     }
 
     public function eliminarAction($nif) {
 
         $em = $this->getDoctrine()->getManager();
-        $product = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
+        $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
 
-        if (!$product) {
+        if (!$client) {
             throw $this->createNotFoundException(
                 'No existeix el client amb el nif: '.$nif
             );
         }
-        $em->remove($product);
+        $em->remove($client);
         $em->flush();
 
         return $this->redirectToRoute('taller_reparacio_backend_consultar_clients');
+    }
+
+    public function formAfegirClientAction(){
+        return $this->render('TallerReparacioBackendBundle:Default:formAfegirClient.html.twig');
     }
 
     public function afegirClientAction(Request $request) {
@@ -53,7 +97,6 @@ class ClientsController extends Controller
         $Vehicles = new Vehicles();
         // $category->setName('tato');
         
-        var_dump("expression");
         if($request != null){
             $Clients->setNIF($request->request->get('nif'));
             $Clients->setNom($request->request->get('nom'));

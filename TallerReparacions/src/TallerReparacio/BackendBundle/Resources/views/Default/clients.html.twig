@@ -21,7 +21,7 @@
                 <img class="img-responsive" src={{ c.foto }} style="width:100%;" />
                 <h3>{{ c.nom }} {{ c.cognom }}</h3>
                 <p>{{ c.nif }}</p>
-                <a class="btn btn-primary" href="{{ path('taller_reparacio_backend_editar_clients') }}">Editar</a>
+                <a class="btn btn-primary" href="{{ path('taller_reparacio_backend_formEditar_clients', {nif:c.nif}) }}">Editar</a>
                 <a class="btn btn-danger" href="{{ path('taller_reparacio_backend_eliminar_clients', {nif:c.nif}) }}">Eliminar</a>
             </div>
         {% endfor %}
