@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-02-2017 a las 17:01:25
+-- Tiempo de generación: 15-02-2017 a las 16:21:54
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -28,14 +28,28 @@ USE `taller_reparacions`;
 -- Estructura de tabla para la tabla `clients`
 --
 
-DROP TABLE IF EXISTS `clients`;
-CREATE TABLE `clients` (
+CREATE TABLE IF NOT EXISTS `clients` (
   `NIF` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cognom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `vehicles_matricula` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `foto` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_C82E743B416931` (`NIF`),
+  KEY `IDX_C82E7451572B15` (`vehicles_matricula`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `clients`
+--
+
+INSERT INTO `clients` (`NIF`, `nom`, `cognom`, `vehicles_matricula`, `id`, `foto`) VALUES
+('000000T', 'josep', 'pocu', NULL, 1, 'http://vignette2.wikia.nocookie.net/transformice/images/b/b4/Moda-masculina-lentes-cara-hombre-carametria-caramorfoligia-consultoria-de-imagen.png/revision/latest?cb=20150427152527&path-prefix=es'),
+('111111T', 'Bernabé', 'Moc', NULL, 2, 'http://www.cara.org.au/file/resize/r308x337/71_cara-girl.jpg'),
+('2222222t', 'Oriol', 'Tonto', NULL, 3, 'https://www.google.es/search?q=cara+hombre+ara%C3%B1a&tbm=isch&imgil=HmcCoTrHc1tUWM%253A%253BgGYHCosIDcsArM%253Bhttp%25253A%25252F%25252Fwww.imagui.com%25252Fa%25252Fimagen-cara-hombre-arana-Tpeaoqg5X&source=iu&pf=m&fir=HmcCoTrHc1tUWM%253A%252CgGYHCosIDcs'),
+('3333333T', 'Maria', 'Mocos', NULL, 4, 'http://www.cara.org.au/file/resize/r308x337/71_cara-girl.jpg'),
+('34123413B', 'Rubert', 'Navarro', NULL, 5, 'http://www.doctoragarciamilla.com/wp-content/uploads/2014/05/Rostro-hombre.jpg');
 
 -- --------------------------------------------------------
 
@@ -43,50 +57,18 @@ CREATE TABLE `clients` (
 -- Estructura de tabla para la tabla `vehicles`
 --
 
-DROP TABLE IF EXISTS `vehicles`;
-CREATE TABLE `vehicles` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `vehicles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `matricula` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `marca` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `model` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tipusCombustible` int(11) NOT NULL,
-  `clients_nif` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL
+  `clients_nif` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_1FCE69FA15DF1885` (`matricula`),
+  KEY `IDX_1FCE69FA35203326` (`clients_nif`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `clients`
---
-ALTER TABLE `clients`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_C82E743B416931` (`NIF`),
-  ADD KEY `IDX_C82E7451572B15` (`vehicles_matricula`);
-
---
--- Indices de la tabla `vehicles`
---
-ALTER TABLE `vehicles`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_1FCE69FA15DF1885` (`matricula`),
-  ADD KEY `IDX_1FCE69FA35203326` (`clients_nif`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `clients`
---
-ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `vehicles`
---
-ALTER TABLE `vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --
