@@ -49,8 +49,8 @@ class Clients
      */
     private $cognom;
 
- /**
-     * @ORM\OneToOne(targetEntity="Vehicles", mappedBy="clients")
+     /**
+     * @ORM\OneToOne(targetEntity="Vehicles", mappedBy="vehicle")
      */
     protected $vehicle;
 

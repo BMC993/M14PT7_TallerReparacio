@@ -55,7 +55,6 @@ class ClientsController extends Controller
         
         var_dump("expression");
         if($request != null){
-            var_dump("Haey");
             $Clients->setNIF($request->request->get('nif'));
             $Clients->setNom($request->request->get('nom'));
             $Clients->setCognom($request->request->get('cognom'));
