@@ -36,7 +36,7 @@ class Vehicles
     private $marca;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Clients", inversedBy="vehicles")
+     * @ORM\OneToOne(targetEntity="Clients", inversedBy="vehicles")
      * @ORM\JoinColumn(name="clients_nif", referencedColumnName="NIF")
      */
     protected $vehicle;

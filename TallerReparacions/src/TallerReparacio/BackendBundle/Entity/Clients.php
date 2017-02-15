@@ -50,7 +50,7 @@ class Clients
     private $cognom;
 
  /**
-     * @ORM\ManyToOne(targetEntity="Vehicles", inversedBy="clients")
+     * @ORM\OneToOne(targetEntity="Vehicles", inversedBy="clients")
      * @ORM\JoinColumn(name="vehicles_matricula", referencedColumnName="matricula")
      */
     protected $vehicle;
@@ -159,6 +159,30 @@ class Clients
     public function getFoto()
     {
         return $this->foto;
+    }
+
+     /**
+     * Get vehicle
+     *
+     * @return integer
+     */
+    public function getVehicle()
+    {
+        return $this->vehicle;
+    }
+
+     /**
+     * Set vehicle
+     *
+     * @param integer $vehicle
+     *
+     * @return Vehicle
+     */
+    public function setVehicle($vehicle)
+    {
+        $this->vehicle = $vehicle;
+
+        return $this;
     }
 }
 

@@ -59,6 +59,7 @@ class ClientsController extends Controller
             $Clients->setNIF($request->request->get('nif'));
             $Clients->setNom($request->request->get('nom'));
             $Clients->setCognom($request->request->get('cognom'));
+            $Clients->setFoto($request->request->get('foto'));
             $Vehicles->setMatricula($request->request->get('matricula'));
             $Vehicles->setMarca($request->request->get('marca'));
             $Vehicles->setModel($request->request->get('model'));
