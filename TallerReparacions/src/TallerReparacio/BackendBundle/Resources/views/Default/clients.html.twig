@@ -1,4 +1,4 @@
-{% extends "TallerReparacioFrontendBundle:Default:index.html.twig " %}
+{% extends "TallerReparacioBackendBundle:Default:index.html.twig " %}
 {% block title %}Clients{% endblock %}
 {% block stylesheets %}
 	{{ parent() }}
@@ -10,6 +10,9 @@
 
 <div class="container">
     <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <a href="{{ path('taller_reparacio_backend_formAfegir_clients') }}" class="btn btn-success">Afegir Client</a>
+        </div>
         <div class="col-sm-12 col-lg-12 col-md-12">
             <h4 class="">{{ titol }}</h4>
         </div>
