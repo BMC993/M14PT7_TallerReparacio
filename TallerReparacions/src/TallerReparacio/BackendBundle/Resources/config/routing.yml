@@ -31,8 +31,12 @@ taller_reparacio_backend_consultar_vehicles:
     defaults: { _controller: TallerReparacioBackendBundle:Vehicles:mostrar }
 
 taller_reparacio_backend_eliminar_vehicles:
-    path:     /vehicles/eliminar
+    path:     /vehicles/eliminar{matricula}
     defaults: { _controller: TallerReparacioBackendBundle:Vehicles:eliminar }
+
+taller_reparacio_backend_formEditar_vehicles:
+    path:     /clients/formEditar/{matricula}
+    defaults: { _controller: TallerReparacioBackendBundle:Vehicles:formEditarVehicle }
 
 taller_reparacio_backend_editar_vehicles:
     path:     /vehicles/editar

@@ -28,7 +28,6 @@ class ClientsController extends Controller
 
     public function formEditarClientAction($nif)
     {
-
         $em = $this->getDoctrine()->getManager();
         $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
 
@@ -67,11 +66,10 @@ class ClientsController extends Controller
         return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
         'titol' => 'Client editat correctament!',
         'client' => $client));
-
     }
 
-    public function eliminarAction($nif) {
-
+    public function eliminarAction($nif)
+    {
         $em = $this->getDoctrine()->getManager();
         $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
 
@@ -86,11 +84,13 @@ class ClientsController extends Controller
         return $this->redirectToRoute('taller_reparacio_backend_consultar_clients');
     }
 
-    public function formAfegirClientAction(){
+    public function formAfegirClientAction()
+    {
         return $this->render('TallerReparacioBackendBundle:Default:formAfegirClient.html.twig');
     }
 
-    public function afegirClientAction(Request $request) {
+    public function afegirClientAction(Request $request)
+    {
         // crea una categoria y le asigna algunos datos ficticios para este ejemplo
         $em = $this->getDoctrine()->getManager();
         $Clients= new Clients();
@@ -108,7 +108,6 @@ class ClientsController extends Controller
             $Vehicles->setTipusCombustible($request->request->get('tipusCombustible'));
             $Clients->setVehicle($Vehicles);
 
-
             // ... perform some action, such as saving the task to the database
             // for example, if Category is a Doctrine entity, save it!
             
@@ -121,6 +120,5 @@ class ClientsController extends Controller
             'client' => $Clients));
         }
     } 
-
 }
 

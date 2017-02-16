@@ -1,0 +1,20 @@
+{% extends "TallerReparacioBackendBundle:Default:index.html.twig " %}
+{% block title %}Editar Vehicle{% endblock %}
+{% block page_content %}
+	<div class="container">
+		<div class="contingut row">
+			<div class="col-xs-12">
+				<form action="{{ path('taller_reparacio_backend_editar_vehicles') }}" method="post">
+					<div class="form-grup">
+						<h2>{{ titol }}</h2>
+						Matrícula: <input class="form-control" type="text" name="matricula" readonly value="{{ vehicle.matricula }}"><br/>
+						Marca: <input class="form-control" type="text" name="marca" value="{{ vehicle.marca }}"></br>
+						Model: <input class="form-control" type="text" name="model" value="{{ vehicle.model }}"></br>
+						Tipus de combustible: <input class="form-control" type="text" name="tipusCombustible" value="{{ vehicle.tipusCombustible }}"></br>
+						<input class="btn btn-default" type="submit" name="submit" value="Editar">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
