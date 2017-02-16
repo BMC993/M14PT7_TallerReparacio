@@ -4,10 +4,10 @@
 	<div class="container">
 		<div class="contingut row">
 			<div class="col-xs-12">
-				<form action="{{ path('taller_reparacio_backend_afegir_clients') }}" method="post">
+				<form action="{{ path('taller_reparacio_backend_editar_clients') }}" method="post">
 					<div class="form-grup">
 						<h1>{{ titol }}</h1></br>
-						NIF: <input class="form-control" type="text" name="nif" value="{{ client.nif }}"><br/>
+						NIF: <input class="form-control" type="text" name="nif" readonly value="{{ client.nif }}"><br/>
 						Nom: <input class="form-control" type="text" name="nom" value="{{ client.nom }}"></br>
 						Cognom: <input class="form-control" type="text" name="cognom" value="{{ client.cognom }}"></br>
 						Foto: <input class="form-control" type="text" name="foto" value="{{ client.foto }}"></br>

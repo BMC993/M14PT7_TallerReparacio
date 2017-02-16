@@ -4,10 +4,9 @@
 	{{ parent() }}
 {% endblock %}
 {% block navigation %}
-	<li class="active"><a href="#">Inici</a></li>
-		<li><a href="#">Historic</a></li>
-		<li><a href="#">login</a></li>
-	</li>
+	<li><a href="{{ path('taller_reparacio_frontend_homepage') }}">Inici</a></li>
+	<li><a href="#">Historic</a></li>
+	<li><a href="{{ path('taller_reparacio_backend_homepage') }}">login</a></li>
 {% endblock %}
 {% block page_content %}
 Aixo es el frontend

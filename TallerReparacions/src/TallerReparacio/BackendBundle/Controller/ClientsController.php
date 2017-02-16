@@ -22,7 +22,7 @@ class ClientsController extends Controller
         $clients = $this->getDoctrine()->getRepository('TallerReparacioBackendBundle:Clients')->findAll();
 
         return $this->render('TallerReparacioBackendBundle:Default:clients.html.twig', array(
-            'titol' => 'Llistat de CLIEEEEEEEEEEEEEEEEEEEENTS',
+            'titol' => 'Llistat de clients',
             'clients' => $clients));
     }
 
@@ -52,9 +52,9 @@ class ClientsController extends Controller
             $em = $this->getDoctrine()->getManager();
             $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
 
-            $nom->$request->request->get('nom');
-            $cognom->$request->request->get('cognom');
-            $foto->$request->request->get('foto');
+            $cognom = $request->request->get('cognom');
+            $nom = $request->request->get('nom');
+            $foto = $request->request->get('foto');
 
             $client->setNom($nom);
             $client->setCognom($cognom);
@@ -118,7 +118,7 @@ class ClientsController extends Controller
 
             return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
             'titol' => 'Nou client afegit',
-            'name' => $Clients->getNom()));
+            'client' => $Clients));
         }
     } 
 
