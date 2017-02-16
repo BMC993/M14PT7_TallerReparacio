@@ -61,35 +61,3 @@ taller_reparacio_backend_editar_reparacions:
 taller_reparacio_backend_afegir_reparacions:
     path:     /reparacions/afegir
     defaults: { _controller: TallerReparacioBackendBundle:Reparacions:afegir }
-
-taller_reparacio_backend_consultar_mecanics:
-    path:     /mecanics
-    defaults: { _controller: TallerReparacioBackendBundle:Mecanics:mostrar }
-
-taller_reparacio_backend_eliminar_mecanics:
-    path:     /mecanics/eliminar
-    defaults: { _controller: TallerReparacioBackendBundle:Mecanics:eliminar }
-
-taller_reparacio_backend_editar_mecanics:
-    path:     /mecanics/editar
-    defaults: { _controller: TallerReparacioBackendBundle:Mecanics:editar }
-
-taller_reparacio_backend_afegir_mecanics:
-    path:     /mecanics/afegir
-    defaults: { _controller: TallerReparacioBackendBundle:Mecanics:afegir }
-
-taller_reparacio_backend_consultar_equips_mecanics:
-    path:     /equips-mecanics
-    defaults: { _controller: TallerReparacioBackendBundle:EquipsMecanics:mostrar }
-
-taller_reparacio_backend_consultar_eliminar_mecanics:
-    path:     /equips-mecanics/eliminar
-    defaults: { _controller: TallerReparacioBackendBundle:EquipsMecanics:eliminar }
-
-taller_reparacio_backend_consultar_editar_mecanics:
-    path:     /equips-mecanics/editar
-    defaults: { _controller: TallerReparacioBackendBundle:EquipsMecanics:editar }
-
-taller_reparacio_backend_consultar_afegir_mecanics:
-    path:     /equips-mecanics/afegir
-    defaults: { _controller: TallerReparacioBackendBundle:EquipsMecanics:afegir }

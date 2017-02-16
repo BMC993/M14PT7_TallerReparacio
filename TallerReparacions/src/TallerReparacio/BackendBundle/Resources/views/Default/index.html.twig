@@ -8,10 +8,10 @@
         <li><a href="{{ path('taller_reparacio_backend_homepage') }}">Inici</a></li>
           <li><a href="{{ path('taller_reparacio_backend_consultar_clients') }}">Clients</a><li>
           <li><a href="{{ path('taller_reparacio_backend_consultar_vehicles') }}">Vehicles</a></li>
-          <li><a href="#">Reparacions</a></li>
-          <li><a href="#">Mecànics</a></li>
-          <li><a href="#">Equip Mecànics</a></li>
-          <li><a href="#">Logout</a></li>
+          <li><a style="color:red;" href="#">Reparacions</a></li>
+          <li><a style="color:red;" href="#">Mecànics</a></li>
+          <li><a style="color:red;" href="#">Equip Mecànics</a></li>
+          <li><a href="{{ path('taller_reparacio_frontend_homepage') }}">Logout</a></li>
       {% endblock %}
 
       {% block page_content %}
