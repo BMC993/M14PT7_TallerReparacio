@@ -1,0 +1,25 @@
+{% extends "TallerReparacioBackendBundle:Default:index.html.twig " %}
+{% block title %}Afegir Vehicle i Client{% endblock %}
+{% block page_content %}
+	<div class="container">
+		<div class="contingut row">
+			<div class="col-xs-12">
+				<form action="{{ path('taller_reparacio_backend_afegir_vehicles') }}" method="post">
+					<div class="form-grup">
+						<h2>Dades Vehicle</h2>
+						Matricula: <input class="form-control" type="text" name="matricula"></br>
+						Marca: <input class="form-control" type="text" name="marca"></br>
+						Model: <input class="form-control" type="text" name="model"></br>
+						Tipus Combustible: <input class="form-control" type="text" name="tipusCombustible"></br>
+						<h2>Dades Client</h2>
+						NIF: <input class="form-control" type="text" name="nif"><br/>
+						Nom: <input class="form-control" type="text" name="nom"></br>
+						Cognom: <input class="form-control" type="text" name="cognom"></br>
+						Foto: <input class="form-control" type="text" name="foto"></br>
+						<input class="btn btn-default" type="submit" name="submit" value="Afegir">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
