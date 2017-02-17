@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-02-2017 a las 16:21:54
+-- Tiempo de generación: 17-02-2017 a las 15:37:27
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -32,24 +32,26 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `NIF` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cognom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `vehicles_matricula` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `foto` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UNIQ_C82E743B416931` (`NIF`),
-  KEY `IDX_C82E7451572B15` (`vehicles_matricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  UNIQUE KEY `UNIQ_C82E743B416931` (`NIF`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `clients`
 --
 
-INSERT INTO `clients` (`NIF`, `nom`, `cognom`, `vehicles_matricula`, `id`, `foto`) VALUES
-('000000T', 'josep', 'pocu', NULL, 1, 'http://vignette2.wikia.nocookie.net/transformice/images/b/b4/Moda-masculina-lentes-cara-hombre-carametria-caramorfoligia-consultoria-de-imagen.png/revision/latest?cb=20150427152527&path-prefix=es'),
-('111111T', 'Bernabé', 'Moc', NULL, 2, 'http://www.cara.org.au/file/resize/r308x337/71_cara-girl.jpg'),
-('2222222t', 'Oriol', 'Tonto', NULL, 3, 'https://www.google.es/search?q=cara+hombre+ara%C3%B1a&tbm=isch&imgil=HmcCoTrHc1tUWM%253A%253BgGYHCosIDcsArM%253Bhttp%25253A%25252F%25252Fwww.imagui.com%25252Fa%25252Fimagen-cara-hombre-arana-Tpeaoqg5X&source=iu&pf=m&fir=HmcCoTrHc1tUWM%253A%252CgGYHCosIDcs'),
-('3333333T', 'Maria', 'Mocos', NULL, 4, 'http://www.cara.org.au/file/resize/r308x337/71_cara-girl.jpg'),
-('34123413B', 'Rubert', 'Navarro', NULL, 5, 'http://www.doctoragarciamilla.com/wp-content/uploads/2014/05/Rostro-hombre.jpg');
+INSERT INTO `clients` (`NIF`, `nom`, `cognom`, `id`, `foto`) VALUES
+('000000T', 'josep456', 'pocu23456', 1, 'http://vignette2.wikia.nocookie.net/transformice/images/b/b4/Moda-masculina-lentes-cara-hombre-carametria-caramorfoligia-consultoria-de-imagen.png/revision/latest?cb=20150427152527&path-prefix=es'),
+('111111T', 'Bernabé', 'Moc', 2, 'http://www.cara.org.au/file/resize/r308x337/71_cara-girl.jpg'),
+('3333333T', 'Maria', 'Mocos', 4, 'http://www.cara.org.au/file/resize/r308x337/71_cara-girl.jpg'),
+('34123413B', 'Rubert', 'Navarro', 5, 'http://www.doctoragarciamilla.com/wp-content/uploads/2014/05/Rostro-hombre.jpg'),
+('222222', 'Ford', 'Mondeo', 9, 'https://s-media-cache-ak0.pinimg.com/564x/d9/20/be/d920beb65bf3d8aa02df63371f122815.jpg'),
+('123', 'Josep', 'Pocu', 10, 'https://s-media-cache-ak0.pinimg.com/564x/d9/20/be/d920beb65bf3d8aa02df63371f122815.jpg'),
+('1234', 'David', 'Gigi EASY', 12, 'https://s-media-cache-ak0.pinimg.com/564x/d9/20/be/d920beb65bf3d8aa02df63371f122815.jpg'),
+('6666666', '6666666', '6666666', 13, 'https://s-media-cache-ak0.pinimg.com/564x/d9/20/be/d920beb65bf3d8aa02df63371f122815.jpg'),
+('1123421342', '123412341243', '213412341234', 14, 'http://www.cara.org.au/file/resize/r308x337/71_cara-girl.jpg');
 
 -- --------------------------------------------------------
 
@@ -66,18 +68,24 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
   `clients_nif` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_1FCE69FA15DF1885` (`matricula`),
-  KEY `IDX_1FCE69FA35203326` (`clients_nif`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  UNIQUE KEY `UNIQ_1FCE69FA35203326` (`clients_nif`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `vehicles`
+--
+
+INSERT INTO `vehicles` (`id`, `matricula`, `marca`, `model`, `tipusCombustible`, `clients_nif`) VALUES
+(1, '1234', 'Ford', 'Mondeo', 12, NULL),
+(3, '222222', 'Ford', 'Caca Bernabé', 21, NULL),
+(4, '5476 BBB', 'Ford', 'Focus', 1, NULL),
+(5, '1234 NNN', 'Seat', 'Ibiza', 1, NULL),
+(6, '5656 BBB', 'Seat', 'León', 1, NULL),
+(7, '12431342', '123421342134', '12341234', 1234, NULL);
 
 --
 -- Restricciones para tablas volcadas
 --
-
---
--- Filtros para la tabla `clients`
---
-ALTER TABLE `clients`
-  ADD CONSTRAINT `FK_C82E7451572B15` FOREIGN KEY (`vehicles_matricula`) REFERENCES `vehicles` (`matricula`);
 
 --
 -- Filtros para la tabla `vehicles`
