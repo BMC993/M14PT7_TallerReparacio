@@ -116,8 +116,9 @@ class ClientsController extends Controller
             $em->flush();
 
             return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
-            'titol' => 'Nou client afegit',
-            'client' => $Clients));
+            'titol' => 'Nou vehicle i client afegit',
+            'client' => $Clients,
+            'vehicle' => $Vehicles));
         }
     } 
 }
