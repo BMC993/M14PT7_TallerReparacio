@@ -42,10 +42,6 @@ taller_reparacio_backend_editar_vehicles:
     path:     /vehicles/editar
     defaults: { _controller: TallerReparacioBackendBundle:Vehicles:editarVehicle }
 
-taller_reparacio_backend_afegir_vehicles:
-    path:     /vehicles/afegir
-    defaults: { _controller: TallerReparacioBackendBundle:Vehicles:afegir }
-
 taller_reparacio_backend_consultar_reparacions:
     path:     /reparacions
     defaults: { _controller: TallerReparacioBackendBundle:Reparacions:mostrar }
