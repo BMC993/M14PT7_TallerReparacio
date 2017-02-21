@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-02-2017 a las 15:58:21
+-- Tiempo de generación: 21-02-2017 a las 15:18:30
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `taller_reparacions`
 --
+DROP DATABASE `taller_reparacions`;
+CREATE DATABASE IF NOT EXISTS `taller_reparacions` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `taller_reparacions`;
 
 -- --------------------------------------------------------
 
@@ -26,13 +29,15 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `clients`
 --
 
-CREATE TABLE `clients` (
+CREATE TABLE IF NOT EXISTS `clients` (
   `NIF` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cognom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `id` int(11) NOT NULL,
-  `foto` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `foto` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_C82E743B416931` (`NIF`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `clients`
@@ -55,11 +60,12 @@ INSERT INTO `clients` (`NIF`, `nom`, `cognom`, `id`, `foto`) VALUES
 -- Estructura de tabla para la tabla `realitzades`
 --
 
-CREATE TABLE `realitzades` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `realitzades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `dataEntrada` date NOT NULL,
   `dataSortida` date NOT NULL,
-  `horesDedicades` int(11) NOT NULL
+  `horesDedicades` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -68,10 +74,12 @@ CREATE TABLE `realitzades` (
 -- Estructura de tabla para la tabla `reparacions`
 --
 
-CREATE TABLE `reparacions` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `reparacions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `descripcio` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `descripcio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_47FFB4417EA37CB3` (`codi`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -80,14 +88,17 @@ CREATE TABLE `reparacions` (
 -- Estructura de tabla para la tabla `vehicles`
 --
 
-CREATE TABLE `vehicles` (
-  `id` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `vehicles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `matricula` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `marca` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `model` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tipusCombustible` int(11) NOT NULL,
-  `clients_nif` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `clients_nif` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_1FCE69FA15DF1885` (`matricula`),
+  UNIQUE KEY `UNIQ_1FCE69FA35203326` (`clients_nif`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `vehicles`
@@ -101,62 +112,6 @@ INSERT INTO `vehicles` (`id`, `matricula`, `marca`, `model`, `tipusCombustible`,
 (6, '5656 BBB', 'Seat', 'León', 1, NULL),
 (7, '12431342', '123421342134', '12341234', 1234, NULL);
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `clients`
---
-ALTER TABLE `clients`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_C82E743B416931` (`NIF`);
-
---
--- Indices de la tabla `realitzades`
---
-ALTER TABLE `realitzades`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `reparacions`
---
-ALTER TABLE `reparacions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_47FFB4417EA37CB3` (`codi`);
-
---
--- Indices de la tabla `vehicles`
---
-ALTER TABLE `vehicles`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_1FCE69FA15DF1885` (`matricula`),
-  ADD UNIQUE KEY `UNIQ_1FCE69FA35203326` (`clients_nif`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `clients`
---
-ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
---
--- AUTO_INCREMENT de la tabla `realitzades`
---
-ALTER TABLE `realitzades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `reparacions`
---
-ALTER TABLE `reparacions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `vehicles`
---
-ALTER TABLE `vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Restricciones para tablas volcadas
 --
