@@ -52,7 +52,7 @@ class Clients
      /**
      * @ORM\OneToOne(targetEntity="Vehicles", mappedBy="vehicle")
      */
-    protected $vehicle;
+     protected $vehicle;
 
     /**
      * Get id
@@ -165,8 +165,8 @@ class Clients
      *
      * @return integer
      */
-    public function getVehicle()
-    {
+     public function getVehicle()
+     {
         return $this->vehicle;
     }
 
@@ -177,8 +177,8 @@ class Clients
      *
      * @return Vehicle
      */
-    public function setVehicle($vehicle)
-    {
+     public function setVehicle($vehicle)
+     {
         $this->vehicle = $vehicle;
 
         return $this;

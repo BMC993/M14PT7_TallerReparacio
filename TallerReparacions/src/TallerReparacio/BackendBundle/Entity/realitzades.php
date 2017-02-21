@@ -42,6 +42,18 @@ class realitzades
      */
     private $horesDedicades;
 
+     /**
+     * @ORM\ManyToMany(targetEntity="Vehicles", inversedBy="realitzades")
+     * @ORM\JoinColumn(name="vehicle_matri", referencedColumnName="matricula")
+     */
+    protected $vehicle;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Reparacions", inversedBy="realitzades")
+     * @ORM\JoinColumn(name="reparacions_codi", referencedColumnName="codi")
+     */
+    protected $reparacio;
+
 
     /**
      * Get id

@@ -41,7 +41,6 @@ class Vehicles
      */
     protected $vehicle;
 
-
     /**
      * @var string
      *
@@ -55,6 +54,11 @@ class Vehicles
      * @ORM\Column(name="tipusCombustible", type="integer")
      */
     private $tipusCombustible;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="realitzades", mappedBy="vehicle")
+     */
+    protected $realitzades;
 
 
     /**
@@ -161,6 +165,30 @@ class Vehicles
     public function getTipusCombustible()
     {
         return $this->tipusCombustible;
+    }
+
+    /**
+     * Get realitzades
+     *
+     * @return integer
+     */
+    public function getRealitzades()
+    {
+        return $this->realitzades;
+    }
+
+    /**
+     * Set vehicle
+     *
+     * @param integer $realitzades
+     *
+     * @return realitzades
+     */
+    public function setRealitzades($realitzades)
+    {
+        $this->realitzades = $realitzades;
+
+        return $this;
     }
 }
 
