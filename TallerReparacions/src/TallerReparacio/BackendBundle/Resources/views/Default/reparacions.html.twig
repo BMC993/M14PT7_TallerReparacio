@@ -1,0 +1,30 @@
+{% extends "TallerReparacioBackendBundle:Default:index.html.twig " %}
+{% block title %}Reparacions{% endblock %}
+{% block stylesheets %}
+	{{ parent() }}
+{% endblock %}
+{% block navigation %}
+	{{ parent() }}
+{% endblock %}
+{% block page_content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <a href="{{ path('taller_reparacio_backend_formCrear_reparacions') }}" class="btn btn-success">Crear Reparació</a>
+        </div>
+        <div class="col-sm-12 col-lg-12 col-md-12">
+            <h2 class="">{{ titol }}</h2>
+        </div>
+        {% for r in reparacions %}
+            <div class="col-sm-3 col-lg-3 col-md-3 text-center">
+                <h3>{{ r.codi }}</h3>
+                <p>{{ r.descripcio }}</p>
+                <p>FALTEN DATES I HORES</p>
+                <a class="btn btn-primary" href="{{ path('taller_reparacio_backend_editar_reparacions', {codi:r.codi}) }}">Editar</a>
+                <a class="btn btn-danger" href="{{ path('taller_reparacio_backend_eliminar_reparacions', {codi:r.codi}) }}">Eliminar</a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
