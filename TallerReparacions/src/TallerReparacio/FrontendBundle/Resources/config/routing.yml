@@ -6,6 +6,10 @@ taller_reparacio_frontend_historic:
     path:     /historic
     defaults: { _controller: TallerReparacioFrontendBundle:Default:historic }
 
+taller_reparacio_frontend_formLogin:
+    path:     /login
+    defaults: { _controller: TallerReparacioFrontendBundle:Login:formLogin}
+
 taller_reparacio_frontend_login:
-    path:     /client/eliminar/{nif}
-    defaults: { _controller: TallerReparacioFrontendBundle:Default:AAAAAAAAAAAAAPASSARALBACKENDDENBERNABEeliminar }
+    path:     /validateLogin
+    defaults: { _controller: TallerReparacioFrontendBundle:Login:login}

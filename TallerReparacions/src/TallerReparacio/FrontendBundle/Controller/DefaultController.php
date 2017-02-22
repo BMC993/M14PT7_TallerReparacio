@@ -20,29 +20,4 @@ class DefaultController extends Controller
             'titol' => 'Llistat de CLIEEEEEEEEEEEEEEEEEEEENTS',
             'clients' => $clients));
     }
-
-
-
-
-
-    public function AAAAAAAAAAAAAPASSARALBACKENDDENBERNABEeliminarAction($nif) {
- 
- 
-        //Entity Manager
-        $em = $this->getDoctrine()->getEntityManager();
-        $posts = $em->getRepository("BackendBundle:Clients");
- 
-        $post = $posts->find($nif);
-        $em->remove($post);
-        $flush=$em->flush();
- 
-        if ($flush == null) {
-            echo "Client eliminat correctament";
-        } else {
-            echo "El client no s'ha borrat";
-        }
- 
- 
-        die();
-    }
 }

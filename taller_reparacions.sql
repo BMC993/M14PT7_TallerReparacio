@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2017 a las 17:01:55
+-- Tiempo de generación: 21-02-2017 a las 17:14:46
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -28,6 +28,7 @@ USE `taller_reparacions`;
 -- Estructura de tabla para la tabla `clients`
 --
 
+DROP TABLE IF EXISTS `clients`;
 CREATE TABLE IF NOT EXISTS `clients` (
   `NIF` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -59,6 +60,7 @@ INSERT INTO `clients` (`NIF`, `nom`, `cognom`, `id`, `foto`) VALUES
 -- Estructura de tabla para la tabla `realitzades`
 --
 
+DROP TABLE IF EXISTS `realitzades`;
 CREATE TABLE IF NOT EXISTS `realitzades` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `dataEntrada` date NOT NULL,
@@ -73,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `realitzades` (
 -- Estructura de tabla para la tabla `reparacions`
 --
 
+DROP TABLE IF EXISTS `reparacions`;
 CREATE TABLE IF NOT EXISTS `reparacions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `codi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -87,6 +90,7 @@ CREATE TABLE IF NOT EXISTS `reparacions` (
 -- Estructura de tabla para la tabla `vehicles`
 --
 
+DROP TABLE IF EXISTS `vehicles`;
 CREATE TABLE IF NOT EXISTS `vehicles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `matricula` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
