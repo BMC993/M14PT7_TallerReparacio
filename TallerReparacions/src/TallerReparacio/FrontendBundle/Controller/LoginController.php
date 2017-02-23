@@ -19,12 +19,12 @@ class LoginController extends Controller
             $username = $request->request->get('username');
             $password = $request->request->get('password');
 
-        $usuaris = $this->getDoctrine()->getRepository('TallerReparacioBackendBundle:Usuaris')->findAll();
+        $usuaris = $this->getDoctrine()->getRepository('TallerReparacioBackendBundle:Usuaris');//->findAll();
 
-        $trobat = findOneBy($usuaris(
+        $trobat = $usuaris->findOneBy(array(
             'nom' => $username, 
-            'password' => $password))
-        }
+            'password' => $password));
+        
 
         if($trobat != null){
             return $this->render('TallerReparacioBackendBundle:Default:loginSatisfactori.html.twig', array(
@@ -34,6 +34,7 @@ class LoginController extends Controller
             return $this->render('TallerReparacioFrontendBundle:Default:loginIncorrecte.html.twig', array(
                 'titol' => 'Ops!'));
         }
-        /* return $this->render('TallerReparacioFrontendBundle:Default:formLogin.html.twig') */;
     }
+    /* return $this->render('TallerReparacioFrontendBundle:Default:formLogin.html.twig') */;
+}
 }

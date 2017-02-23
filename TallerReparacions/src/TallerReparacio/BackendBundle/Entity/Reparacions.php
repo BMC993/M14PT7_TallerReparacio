@@ -36,12 +36,6 @@ class Reparacions
     private $descripcio;
 
     /**
-     * @ORM\ManyToMany(targetEntity="realitzades", mappedBy="reparacio")
-     */
-    protected $realitzades;
-
-
-    /**
      * Get id
      *
      * @return int
@@ -97,30 +91,6 @@ class Reparacions
     public function getDescripcio()
     {
         return $this->descripcio;
-    }
-
-     /**
-     * Get realitzades
-     *
-     * @return integer
-     */
-     public function getRealitzades()
-     {
-        return $this->realitzades;
-    }
-
-    /**
-     * Set vehicle
-     *
-     * @param integer $realitzades
-     *
-     * @return realitzades
-     */
-    public function setRealitzades($realitzades)
-    {
-        $this->realitzades = $realitzades;
-
-        return $this;
     }
 }
 
