@@ -1,0 +1,18 @@
+{% extends "TallerReparacioFrontendBundle:Default:index.html.twig " %}
+{% block title %}Login{% endblock %}
+{% block page_content %}
+	<div class="container">
+		<div class="contingut row">
+			<div class="col-xs-12">
+				<form action="{{ path('taller_reparacio_frontend_login') }}" method="post">
+					<div class="form-grup">
+						<h2>Dades Usuari</h2><br/>
+						Username: <input class="form-control" type="text" name="username"><br/>
+						Password: <input class="form-control" type="password" name="password"></br>
+						<input class="btn btn-default" type="submit" name="submit" value="Login">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+{% endblock %}
