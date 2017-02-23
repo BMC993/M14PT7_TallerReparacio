@@ -50,9 +50,13 @@ taller_reparacio_backend_eliminar_reparacions:
     path:     /reparacions/eliminar/{codi}
     defaults: { _controller: TallerReparacioBackendBundle:Reparacions:eliminar }
 
-taller_reparacio_backend_editar_reparacions:
+taller_reparacio_backend_formEditar_reparacions:
     path:     /reparacions/editar/{codi}
-    defaults: { _controller: TallerReparacioBackendBundle:Reparacions:editar }
+    defaults: { _controller: TallerReparacioBackendBundle:Reparacions:formEditarReparacio }
+
+taller_reparacio_backend_editar_reparacions:
+    path:     /reparacions/editar
+    defaults: { _controller: TallerReparacioBackendBundle:Reparacions:editarReparacio }
 
 taller_reparacio_backend_formCrear_reparacions:
     path:     /reparacions/formCrear

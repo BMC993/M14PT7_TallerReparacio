@@ -60,6 +60,47 @@ class ReparacionsController extends Controller
             'reparacio' => $Reparacions,
             'vehicle' => $Vehicles));
         }
-    } 
+    }
+
+    public function formEditarVehicleAction($codi)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $vehicle = $em->getRepository('TallerReparacioBackendBundle:Vehicles')->findOneBymatricula($matricula);
+
+        if (!$vehicle) {
+            throw $this->createNotFoundException(
+                'No existeix el vehicle amb la matricula: '.$matricula
+            );
+        }
+
+        return $this->render('TallerReparacioBackendBundle:Default:formEditarVehicle.html.twig', array(
+            'titol' => 'Editar vehicle',
+            'vehicle' => $vehicle));
+    }
+
+    public function editarReparacioAction(Request $request)
+    {
+        if($request != null){
+
+            $matricula = $request->request->get('matricula');
+
+            $em = $this->getDoctrine()->getManager();
+            $vehicle = $em->getRepository('TallerReparacioBackendBundle:Vehicles')->findOneBymatricula($matricula);
+
+            $marca = $request->request->get('marca');
+            $model = $request->request->get('model');
+            $tipusCombustible = $request->request->get('tipusCombustible');
+
+            if ($marca != '' && $model != '' && $tipusCombustible != '') {
+                $vehicle->setMarca($marca);
+                $vehicle->setModel($model);
+                $vehicle->setTipusCombustible($tipusCombustible);
+                $ok = true;
+            } else {
+                $ok = false;
+            }
+
+        }
+    }
 }
 
