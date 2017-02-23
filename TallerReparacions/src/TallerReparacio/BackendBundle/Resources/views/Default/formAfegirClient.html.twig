@@ -15,7 +15,16 @@
 						Matricula: <input class="form-control" type="text" name="matricula"></br>
 						Marca: <input class="form-control" type="text" name="marca"></br>
 						Model: <input class="form-control" type="text" name="model"></br>
-						Tipus Combustible: <input class="form-control" type="text" name="tipusCombustible"></br>
+						{#Tipus Combustible: <select name="tipusCombustible">
+							{% for v in vehicles %}
+								<option value="{{ v.matricula }}">{{ v.matricula }}</option>
+       						{% endfor %}
+						</select><br/><br/>#}
+						Tipus Combustible: <select name="tipusCombustible">
+							<option value="1">Diesel</option>
+							<option value="2">Super 95</option>
+							<option value="3">Gasoil</option>
+						</select><br/><br/>
 						<input class="btn btn-default" type="submit" name="submit" value="Afegir">
 					</div>
 				</form>

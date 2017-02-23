@@ -58,6 +58,6 @@ taller_reparacio_backend_formCrear_reparacions:
     path:     /reparacions/formCrear
     defaults: { _controller: TallerReparacioBackendBundle:Reparacions:formCrearReparacio }
 
-taller_reparacio_backend_afegir_reparacions:
+taller_reparacio_backend_crear_reparacions:
     path:     /clients/crear
     defaults: { _controller: TallerReparacioBackendBundle:Reparacions:crearReparacio }

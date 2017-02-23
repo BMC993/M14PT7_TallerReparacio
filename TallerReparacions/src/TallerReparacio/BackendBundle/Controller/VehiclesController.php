@@ -55,17 +55,28 @@ class VehiclesController extends Controller
             $model = $request->request->get('model');
             $tipusCombustible = $request->request->get('tipusCombustible');
 
-            $vehicle->setMarca($marca);
-            $vehicle->setModel($model);
-            $vehicle->setTipusCombustible($tipusCombustible);
+            if ($marca != '' && $model != '' && $tipusCombustible != '') {
+                $vehicle->setMarca($marca);
+                $vehicle->setModel($model);
+                $vehicle->setTipusCombustible($tipusCombustible);
+                $ok = true;
+            } else {
+                $ok = false;
+            }
 
         }
 
         $em->flush();
 
-        return $this->render('TallerReparacioBackendBundle:Default:vehicleAdded.html.twig', array(
-        'titol' => 'Vehicle editat correctament!',
-        'vehicle' => $vehicle));
+        if ($ok) {
+            return $this->render('TallerReparacioBackendBundle:Default:vehicleAdded.html.twig', array(
+            'titol' => 'Vehicle editat correctament!',
+            'vehicle' => $vehicle));
+        } else {
+            return $this->render('TallerReparacioBackendBundle:Default:vehicleAdded.html.twig', array(
+            'titol' => 'No has editat el vehicle correctament...',
+            'vehicle' => $vehicle));
+        }
     }
 
     public function eliminarAction($matricula)

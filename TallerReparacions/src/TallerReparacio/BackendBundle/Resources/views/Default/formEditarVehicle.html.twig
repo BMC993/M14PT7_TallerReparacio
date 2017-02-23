@@ -10,7 +10,12 @@
 						Matrícula: <input class="form-control" type="text" name="matricula" readonly value="{{ vehicle.matricula }}"><br/>
 						Marca: <input class="form-control" type="text" name="marca" value="{{ vehicle.marca }}"></br>
 						Model: <input class="form-control" type="text" name="model" value="{{ vehicle.model }}"></br>
-						Tipus de combustible: <input class="form-control" type="text" name="tipusCombustible" value="{{ vehicle.tipusCombustible }}"></br>
+						{#Tipus de combustible: <input class="form-control" type="text" name="tipusCombustible" value="{{ vehicle.tipusCombustible }}"></br>#}
+						Tipus Combustible: <select name="tipusCombustible">
+							<option value="1">Diesel</option>
+							<option value="2">Super 95</option>
+							<option value="3">Gasoil</option>
+						</select><br/><br/>
 						<input class="btn btn-default" type="submit" name="submit" value="Editar">
 					</div>
 				</form>

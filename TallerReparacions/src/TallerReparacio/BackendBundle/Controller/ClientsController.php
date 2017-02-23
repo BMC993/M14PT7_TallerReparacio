@@ -34,7 +34,7 @@ class ClientsController extends Controller
         if (!$client) {
             throw $this->createNotFoundException(
                 'No existeix el client amb el nif: '.$nif
-            );
+                );
         }
 
         return $this->render('TallerReparacioBackendBundle:Default:formEditarClient.html.twig', array(
@@ -55,17 +55,28 @@ class ClientsController extends Controller
             $nom = $request->request->get('nom');
             $foto = $request->request->get('foto');
 
-            $client->setNom($nom);
-            $client->setCognom($cognom);
-            $client->setFoto($foto);
+            if ($cognom != '' && $nom != '' && $foto != '') {
+                $client->setNom($nom);
+                $client->setCognom($cognom);
+                $client->setFoto($foto);
+                $ok = true;
+            } else {
+                $ok = false;
+            }
 
         }
 
         $em->flush();
 
-        return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
-        'titol' => 'Client editat correctament!',
-        'client' => $client));
+        if ($ok) {
+            return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
+                'titol' => 'Client editat correctament!',
+                'client' => $client));
+        } else {
+            return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
+                'titol' => 'No has editat el client correctament...',
+                'client' => $client));
+        }
     }
 
     public function eliminarAction($nif)
@@ -76,7 +87,7 @@ class ClientsController extends Controller
         if (!$client) {
             throw $this->createNotFoundException(
                 'No existeix el client amb el nif: '.$nif
-            );
+                );
         }
         $em->remove($client);
         $em->flush();
@@ -97,28 +108,66 @@ class ClientsController extends Controller
         $Vehicles = new Vehicles();
         // $category->setName('tato');
         
-        if($request != null){
-            $Clients->setNIF($request->request->get('nif'));
-            $Clients->setNom($request->request->get('nom'));
-            $Clients->setCognom($request->request->get('cognom'));
-            $Clients->setFoto($request->request->get('foto'));
-            $Vehicles->setMatricula($request->request->get('matricula'));
-            $Vehicles->setMarca($request->request->get('marca'));
-            $Vehicles->setModel($request->request->get('model'));
-            $Vehicles->setTipusCombustible($request->request->get('tipusCombustible'));
-            $Clients->setVehicle($Vehicles);
+        $nif = $request->request->get('nif');
+        $nom = $request->request->get('nom');
+        $cognom = $request->request->get('cognom');
+        $foto = $request->request->get('foto');
+        $matricula = $request->request->get('matricula');
+        $marca = $request->request->get('marca');
+        $model = $request->request->get('model');
+        $tipusCombustible = $request->request->get('tipusCombustible');
 
-            // ... perform some action, such as saving the task to the database
-            // for example, if Category is a Doctrine entity, save it!
-            
+
+
+        if($request != null){
+
+            if ($nif != '' && $cognom != '' && $nom != '' && $foto != '' && $matricula != '' && $marca != '' && $model != '' && $tipusCombustible != '') {
+
+                $Clients->setNIF($nif);
+                $Clients->setNom($nom);
+                $Clients->setCognom($cognom);
+                $Clients->setFoto($foto);
+                $Vehicles->setMatricula($matricula);
+                $Vehicles->setMarca($marca);
+                $Vehicles->setModel($model);
+                $Vehicles->setTipusCombustible($tipusCombustible);
+                $Clients->setVehicle($Vehicles);
+
+                $ok = true;
+
+
+
+
+                /*$Clients->setNIF($request->request->get('nif'));
+                $Clients->setNom($request->request->get('nom'));
+                $Clients->setCognom($request->request->get('cognom'));
+                $Clients->setFoto($request->request->get('foto'));
+                $Vehicles->setMatricula($request->request->get('matricula'));
+                $Vehicles->setMarca($request->request->get('marca'));
+                $Vehicles->setModel($request->request->get('model'));
+                $Vehicles->setTipusCombustible($request->request->get('tipusCombustible'));
+                $Clients->setVehicle($Vehicles);*/
+
+                // ... perform some action, such as saving the task to the database
+                // for example, if Category is a Doctrine entity, save it!
             $em->persist($Clients);
             $em->persist($Vehicles);
             $em->flush();
+                
+            } else {
+                $ok = false;
+            }
 
-            return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
-            'titol' => 'Nou vehicle i client afegit',
-            'client' => $Clients,
-            'vehicle' => $Vehicles));
+            if ($ok) {
+                return $this->render('TallerReparacioBackendBundle:Default:clientAndVehicleAdded.html.twig', array(
+                    'titol' => 'Nou vehicle i client afegit',
+                    'client' => $Clients,
+                    'vehicle' => $Vehicles));
+            } else {
+                return $this->render('TallerReparacioBackendBundle:Default:clientAndVehicleNotAdded.html.twig', array(
+                    'titol' => 'No has introduït les dades correctament'));
+
+            }
         }
     } 
 }

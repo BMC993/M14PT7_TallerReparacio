@@ -40,31 +40,24 @@ class ReparacionsController extends Controller
     {
         // crea una categoria y le asigna algunos datos ficticios para este ejemplo
         $em = $this->getDoctrine()->getManager();
-        $Clients= new Clients();
-        $Vehicles = new Vehicles();
+        $Reparacions = new Reparacions();
+        //$Vehicles = new Vehicles();
         // $category->setName('tato');
         
         if($request != null){
-            $Clients->setNIF($request->request->get('nif'));
-            $Clients->setNom($request->request->get('nom'));
-            $Clients->setCognom($request->request->get('cognom'));
-            $Clients->setFoto($request->request->get('foto'));
-            $Vehicles->setMatricula($request->request->get('matricula'));
-            $Vehicles->setMarca($request->request->get('marca'));
-            $Vehicles->setModel($request->request->get('model'));
-            $Vehicles->setTipusCombustible($request->request->get('tipusCombustible'));
-            $Clients->setVehicle($Vehicles);
+            $Reparacions->setCodi($request->request->get('codi'));
+            $Reparacions->setDescripcio($request->request->get('descripcio'));
 
             // ... perform some action, such as saving the task to the database
             // for example, if Category is a Doctrine entity, save it!
             
-            $em->persist($Clients);
+            $em->persist($Reparacions);
             $em->persist($Vehicles);
             $em->flush();
 
-            return $this->render('TallerReparacioBackendBundle:Default:clientAdded.html.twig', array(
-            'titol' => 'Nou vehicle i client afegit',
-            'client' => $Clients,
+            return $this->render('TallerReparacioBackendBundle:Default:reparacioAdded.html.twig', array(
+            'titol' => 'Reparació creada!',
+            'reparacio' => $Reparacions,
             'vehicle' => $Vehicles));
         }
     } 
