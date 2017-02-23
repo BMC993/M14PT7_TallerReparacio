@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 23-02-2017 a las 16:30:41
+-- Tiempo de generación: 23-02-2017 a las 16:35:40
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `taller_reparacions`
 --
+CREATE DATABASE IF NOT EXISTS `taller_reparacions` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci;
+USE `taller_reparacions`;
 
 -- --------------------------------------------------------
 
@@ -26,13 +28,16 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `clients`
 --
 
-CREATE TABLE `clients` (
+DROP TABLE IF EXISTS `clients`;
+CREATE TABLE IF NOT EXISTS `clients` (
   `NIF` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `nom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `cognom` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `id` int(11) NOT NULL,
-  `foto` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `foto` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_C82E743B416931` (`NIF`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `clients`
@@ -53,13 +58,17 @@ INSERT INTO `clients` (`NIF`, `nom`, `cognom`, `id`, `foto`) VALUES
 -- Estructura de tabla para la tabla `realitzades`
 --
 
-CREATE TABLE `realitzades` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `realitzades`;
+CREATE TABLE IF NOT EXISTS `realitzades` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `dataEntrada` date NOT NULL,
   `dataSortida` date NOT NULL,
   `horesDedicades` int(11) NOT NULL,
   `vehicle_matricula` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `nif_client` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+  `nif_client` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nif_client` (`nif_client`),
+  KEY `vehicle_matricula` (`vehicle_matricula`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -68,10 +77,13 @@ CREATE TABLE `realitzades` (
 -- Estructura de tabla para la tabla `reparacions`
 --
 
-CREATE TABLE `reparacions` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `reparacions`;
+CREATE TABLE IF NOT EXISTS `reparacions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `codi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `descripcio` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `descripcio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_47FFB4417EA37CB3` (`codi`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -80,11 +92,14 @@ CREATE TABLE `reparacions` (
 -- Estructura de tabla para la tabla `usuaris`
 --
 
-CREATE TABLE `usuaris` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `usuaris`;
+CREATE TABLE IF NOT EXISTS `usuaris` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(20) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `password` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_3664EC126C6E55B5` (`nom`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `usuaris`
@@ -101,14 +116,18 @@ INSERT INTO `usuaris` (`id`, `nom`, `password`) VALUES
 -- Estructura de tabla para la tabla `vehicles`
 --
 
-CREATE TABLE `vehicles` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `vehicles`;
+CREATE TABLE IF NOT EXISTS `vehicles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `matricula` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `marca` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `model` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tipusCombustible` int(11) NOT NULL,
-  `clients_nif` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `clients_nif` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UNIQ_1FCE69FA15DF1885` (`matricula`),
+  UNIQUE KEY `UNIQ_1FCE69FA35203326` (`clients_nif`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `vehicles`
@@ -122,76 +141,6 @@ INSERT INTO `vehicles` (`id`, `matricula`, `marca`, `model`, `tipusCombustible`,
 (6, '5656 BBB', 'Seat', 'León', 1, NULL),
 (8, '6969 JCD', 'Seat', 'Ibiza', 2, NULL);
 
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `clients`
---
-ALTER TABLE `clients`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_C82E743B416931` (`NIF`);
-
---
--- Indices de la tabla `realitzades`
---
-ALTER TABLE `realitzades`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nif_client` (`nif_client`),
-  ADD KEY `vehicle_matricula` (`vehicle_matricula`);
-
---
--- Indices de la tabla `reparacions`
---
-ALTER TABLE `reparacions`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_47FFB4417EA37CB3` (`codi`);
-
---
--- Indices de la tabla `usuaris`
---
-ALTER TABLE `usuaris`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_3664EC126C6E55B5` (`nom`);
-
---
--- Indices de la tabla `vehicles`
---
-ALTER TABLE `vehicles`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `UNIQ_1FCE69FA15DF1885` (`matricula`),
-  ADD UNIQUE KEY `UNIQ_1FCE69FA35203326` (`clients_nif`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `clients`
---
-ALTER TABLE `clients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
---
--- AUTO_INCREMENT de la tabla `realitzades`
---
-ALTER TABLE `realitzades`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `reparacions`
---
-ALTER TABLE `reparacions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT de la tabla `usuaris`
---
-ALTER TABLE `usuaris`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT de la tabla `vehicles`
---
-ALTER TABLE `vehicles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Restricciones para tablas volcadas
 --
