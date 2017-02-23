@@ -1,0 +1,40 @@
+<?php
+
+namespace TallerReparacio\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Reparacions
+ *
+ * @ORM\Table(name="reparacions", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_47FFB4417EA37CB3", columns={"codi"})})
+ * @ORM\Entity
+ */
+class Reparacions
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="codi", type="string", length=255, nullable=false)
+     */
+    private $codi;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcio", type="string", length=255, nullable=false)
+     */
+    private $descripcio;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

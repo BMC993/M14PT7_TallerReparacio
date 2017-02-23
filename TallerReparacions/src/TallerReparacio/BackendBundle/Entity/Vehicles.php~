@@ -1,0 +1,64 @@
+<?php
+
+namespace TallerReparacio\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Vehicles
+ *
+ * @ORM\Table(name="vehicles", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1FCE69FA15DF1885", columns={"matricula"}), @ORM\UniqueConstraint(name="UNIQ_1FCE69FA35203326", columns={"clients_nif"})})
+ * @ORM\Entity
+ */
+class Vehicles
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="matricula", type="string", length=255, nullable=false)
+     */
+    private $matricula;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="marca", type="string", length=255, nullable=false)
+     */
+    private $marca;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="model", type="string", length=255, nullable=false)
+     */
+    private $model;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="tipusCombustible", type="integer", nullable=false)
+     */
+    private $tipuscombustible;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \TallerReparacio\BackendBundle\Entity\Clients
+     *
+     * @ORM\ManyToOne(targetEntity="TallerReparacio\BackendBundle\Entity\Clients")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="clients_nif", referencedColumnName="NIF")
+     * })
+     */
+    private $clientsNif;
+
+
+}
+

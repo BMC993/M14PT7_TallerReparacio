@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="TallerReparacio\BackendBundle\Entity\Vehicles" table="vehicles">
+    <unique-constraints>
+      <unique-constraint name="UNIQ_1FCE69FA15DF1885" columns="matricula"/>
+      <unique-constraint name="UNIQ_1FCE69FA35203326" columns="clients_nif"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="matricula" type="string" column="matricula" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="marca" type="string" column="marca" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="model" type="string" column="model" length="255" nullable="false">
+      <options>
+        <option name="fixed"/>
+      </options>
+    </field>
+    <field name="tipuscombustible" type="integer" column="tipusCombustible" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="clientsNif" target-entity="Clients" fetch="LAZY">
+      <join-columns>
+        <join-column name="clients_nif" referenced-column-name="NIF"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

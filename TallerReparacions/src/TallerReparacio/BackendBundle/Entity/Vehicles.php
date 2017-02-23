@@ -7,69 +7,59 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Vehicles
  *
- * @ORM\Table(name="vehicles")
- * @ORM\Entity(repositoryClass="TallerReparacio\BackendBundle\Repository\VehiclesRepository")
+ * @ORM\Table(name="vehicles", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_1FCE69FA15DF1885", columns={"matricula"}), @ORM\UniqueConstraint(name="UNIQ_1FCE69FA35203326", columns={"clients_nif"})})
+ * @ORM\Entity
  */
 class Vehicles
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="matricula", type="string", length=255, unique=true)
+     * @ORM\Column(name="matricula", type="string", length=255, nullable=false)
      */
     private $matricula;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="marca", type="string", length=255)
+     * @ORM\Column(name="marca", type="string", length=255, nullable=false)
      */
     private $marca;
 
     /**
-     * @ORM\OneToOne(targetEntity="Clients", inversedBy="vehicles")
-     * @ORM\JoinColumn(name="clients_nif", referencedColumnName="NIF")
-     */
-    protected $vehicle;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="model", type="string", length=255)
+     * @ORM\Column(name="model", type="string", length=255, nullable=false)
      */
     private $model;
 
     /**
-     * @var int
+     * @var integer
      *
-     * @ORM\Column(name="tipusCombustible", type="integer")
+     * @ORM\Column(name="tipusCombustible", type="integer", nullable=false)
      */
-    private $tipusCombustible;
+    private $tipuscombustible;
 
     /**
-     * @ORM\ManyToMany(targetEntity="realitzades", mappedBy="vehicle")
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $realitzades;
-
+    private $id;
 
     /**
-     * Get id
+     * @var \TallerReparacio\BackendBundle\Entity\Clients
      *
-     * @return int
+     * @ORM\ManyToOne(targetEntity="TallerReparacio\BackendBundle\Entity\Clients")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="clients_nif", referencedColumnName="NIF")
+     * })
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $clientsNif;
+
+
 
     /**
      * Set matricula
@@ -144,51 +134,60 @@ class Vehicles
     }
 
     /**
-     * Set tipusCombustible
+     * Set tipuscombustible
      *
-     * @param integer $tipusCombustible
+     * @param integer $tipuscombustible
      *
      * @return Vehicles
      */
-    public function setTipusCombustible($tipusCombustible)
+    public function setTipuscombustible($tipuscombustible)
     {
-        $this->tipusCombustible = $tipusCombustible;
+        $this->tipuscombustible = $tipuscombustible;
 
         return $this;
     }
 
     /**
-     * Get tipusCombustible
-     *
-     * @return int
-     */
-    public function getTipusCombustible()
-    {
-        return $this->tipusCombustible;
-    }
-
-    /**
-     * Get realitzades
+     * Get tipuscombustible
      *
      * @return integer
      */
-    public function getRealitzades()
+    public function getTipuscombustible()
     {
-        return $this->realitzades;
+        return $this->tipuscombustible;
     }
 
     /**
-     * Set vehicle
+     * Get id
      *
-     * @param integer $realitzades
-     *
-     * @return realitzades
+     * @return integer
      */
-    public function setRealitzades($realitzades)
+    public function getId()
     {
-        $this->realitzades = $realitzades;
+        return $this->id;
+    }
+
+    /**
+     * Set clientsNif
+     *
+     * @param \TallerReparacio\BackendBundle\Entity\Clients $clientsNif
+     *
+     * @return Vehicles
+     */
+    public function setClientsNif(\TallerReparacio\BackendBundle\Entity\Clients $clientsNif = null)
+    {
+        $this->clientsNif = $clientsNif;
 
         return $this;
     }
-}
 
+    /**
+     * Get clientsNif
+     *
+     * @return \TallerReparacio\BackendBundle\Entity\Clients
+     */
+    public function getClientsNif()
+    {
+        return $this->clientsNif;
+    }
+}

@@ -1,0 +1,64 @@
+<?php
+
+namespace TallerReparacio\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Realitzades
+ *
+ * @ORM\Table(name="realitzades", uniqueConstraints={@ORM\UniqueConstraint(name="nif_client", columns={"nif_client"})}, indexes={@ORM\Index(name="vehicle_matricula", columns={"vehicle_matricula"})})
+ * @ORM\Entity
+ */
+class Realitzades
+{
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dataEntrada", type="date", nullable=false)
+     */
+    private $dataentrada;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dataSortida", type="date", nullable=false)
+     */
+    private $datasortida;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="horesDedicades", type="integer", nullable=false)
+     */
+    private $horesdedicades;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nif_client", type="string", length=10, nullable=false)
+     */
+    private $nifClient;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \TallerReparacio\BackendBundle\Entity\Vehicles
+     *
+     * @ORM\ManyToOne(targetEntity="TallerReparacio\BackendBundle\Entity\Vehicles")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="vehicle_matricula", referencedColumnName="matricula")
+     * })
+     */
+    private $vehicleMatricula;
+
+
+}
+

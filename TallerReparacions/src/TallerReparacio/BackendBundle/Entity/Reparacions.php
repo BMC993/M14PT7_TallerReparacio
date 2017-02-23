@@ -7,49 +7,35 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Reparacions
  *
- * @ORM\Table(name="reparacions")
- * @ORM\Entity(repositoryClass="TallerReparacio\BackendBundle\Repository\ReparacionsRepository")
+ * @ORM\Table(name="reparacions", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_47FFB4417EA37CB3", columns={"codi"})})
+ * @ORM\Entity
  */
 class Reparacions
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var string
      *
-     * @ORM\Column(name="codi", type="string", length=255, unique=true)
+     * @ORM\Column(name="codi", type="string", length=255, nullable=false)
      */
     private $codi;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcio", type="string", length=255)
+     * @ORM\Column(name="descripcio", type="string", length=255, nullable=false)
      */
     private $descripcio;
 
     /**
-     * @ORM\ManyToMany(targetEntity="realitzades", mappedBy="reparacio")
-     */
-    protected $realitzades;
-
-
-    /**
-     * Get id
+     * @var integer
      *
-     * @return int
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $id;
+
+
 
     /**
      * Set codi
@@ -99,28 +85,13 @@ class Reparacions
         return $this->descripcio;
     }
 
-     /**
-     * Get realitzades
+    /**
+     * Get id
      *
      * @return integer
      */
-     public function getRealitzades()
-     {
-        return $this->realitzades;
-    }
-
-    /**
-     * Set vehicle
-     *
-     * @param integer $realitzades
-     *
-     * @return realitzades
-     */
-    public function setRealitzades($realitzades)
+    public function getId()
     {
-        $this->realitzades = $realitzades;
-
-        return $this;
+        return $this->id;
     }
 }
-

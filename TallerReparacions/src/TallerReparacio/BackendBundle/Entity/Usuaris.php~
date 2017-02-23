@@ -1,0 +1,40 @@
+<?php
+
+namespace TallerReparacio\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Usuaris
+ *
+ * @ORM\Table(name="usuaris", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_3664EC126C6E55B5", columns={"nom"})})
+ * @ORM\Entity
+ */
+class Usuaris
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom", type="string", length=20, nullable=false)
+     */
+    private $nom;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=20, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+
+}
+

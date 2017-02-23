@@ -7,85 +7,72 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Clients
  *
- * @ORM\Table(name="clients")
- * @ORM\Entity(repositoryClass="TallerReparacio\BackendBundle\Repository\ClientsRepository")
+ * @ORM\Table(name="clients", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_C82E743B416931", columns={"NIF"})})
+ * @ORM\Entity
  */
 class Clients
 {
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="NIF", type="string", length=10, nullable=false)
      */
-    private $id;
+    private $nif;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="NIF", type="string", length=10, unique=true)
-     */
-    private $nIF;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="foto", type="string", length=255)
-     */
-    private $foto;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cognom", type="string", length=255)
+     * @ORM\Column(name="cognom", type="string", length=255, nullable=false)
      */
     private $cognom;
 
-     /**
-     * @ORM\OneToOne(targetEntity="Vehicles", mappedBy="vehicle")
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="foto", type="string", length=255, nullable=false)
      */
-     protected $vehicle;
+    private $foto;
 
     /**
-     * Get id
+     * @var integer
      *
-     * @return int
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    public function getId()
-    {
-        return $this->id;
-    }
+    private $id;
+
+
 
     /**
-     * Set nIF
+     * Set nif
      *
-     * @param string $nIF
+     * @param string $nif
      *
      * @return Clients
      */
-    public function setNIF($nIF)
+    public function setNif($nif)
     {
-        $this->nIF = $nIF;
+        $this->nif = $nif;
 
         return $this;
     }
 
     /**
-     * Get nIF
+     * Get nif
      *
      * @return string
      */
-    public function getNIF()
+    public function getNif()
     {
-        return $this->nIF;
+        return $this->nif;
     }
 
     /**
@@ -160,28 +147,13 @@ class Clients
         return $this->foto;
     }
 
-     /**
-     * Get vehicle
+    /**
+     * Get id
      *
      * @return integer
      */
-     public function getVehicle()
-     {
-        return $this->vehicle;
-    }
-
-     /**
-     * Set vehicle
-     *
-     * @param integer $vehicle
-     *
-     * @return Vehicle
-     */
-     public function setVehicle($vehicle)
-     {
-        $this->vehicle = $vehicle;
-
-        return $this;
+    public function getId()
+    {
+        return $this->id;
     }
 }
-
