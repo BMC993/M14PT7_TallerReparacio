@@ -11,5 +11,5 @@ taller_reparacio_frontend_formLogin:
     defaults: { _controller: TallerReparacioFrontendBundle:Login:formLogin}
 
 taller_reparacio_frontend_login:
-    path:     /validateLogin
+    path:     /backend/validateLogin
     defaults: { _controller: TallerReparacioFrontendBundle:Login:login}
