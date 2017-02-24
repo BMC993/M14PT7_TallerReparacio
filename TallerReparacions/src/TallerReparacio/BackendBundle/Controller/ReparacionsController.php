@@ -52,30 +52,29 @@ class ReparacionsController extends Controller
             // for example, if Category is a Doctrine entity, save it!
             
             $em->persist($Reparacions);
-            $em->persist($Vehicles);
+           // $em->persist($Vehicles);
             $em->flush();
 
             return $this->render('TallerReparacioBackendBundle:Default:reparacioAdded.html.twig', array(
             'titol' => 'Reparació creada!',
-            'reparacio' => $Reparacions,
-            'vehicle' => $Vehicles));
+            'r' => $Reparacions));
         }
     }
 
-    public function formEditarVehicleAction($codi)
+    public function formEditarReparacioAction($codi)
     {
         $em = $this->getDoctrine()->getManager();
-        $vehicle = $em->getRepository('TallerReparacioBackendBundle:Vehicles')->findOneBymatricula($matricula);
+        $reparacio = $em->getRepository('TallerReparacioBackendBundle:Reparacions')->findOneBycodi($codi);
 
-        if (!$vehicle) {
+        if (!$reparacio) {
             throw $this->createNotFoundException(
-                'No existeix el vehicle amb la matricula: '.$matricula
+                'No existeix la reparacio amb el codi: '.$codi
             );
         }
 
         return $this->render('TallerReparacioBackendBundle:Default:formEditarVehicle.html.twig', array(
-            'titol' => 'Editar vehicle',
-            'vehicle' => $vehicle));
+            'titol' => 'Editar reparacio',
+            'reparacio' => $reparacio));
     }
 
     public function editarReparacioAction(Request $request)
