@@ -3,6 +3,9 @@
 {% block stylesheets %}
 	{{ parent() }}
 {% endblock %}
+{% block iniciNav %}
+<a class="navbar-brand" href="{{ path('taller_reparacio_frontend_homepage') }}">Taller reparacions</a>
+{% endblock %}
 {% block navigation %}
 	<li><a href="{{ path('taller_reparacio_frontend_homepage') }}">Inici</a></li>
 	<li><a style="color:red;" href="#">Historic</a></li>
