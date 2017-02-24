@@ -17,12 +17,16 @@
             <h2 class="">{{ titol }}</h2>
         </div>
         {% for c in clients %}
-            <div class="col-sm-3 col-lg-3 col-md-3 text-center" style="margin-bottom:20px;">
-                <img class="img-responsive" src={{ c.foto }} style="width:100%;" />
-                <h3>{{ c.nom }} {{ c.cognom }}</h3>
-                <p>{{ c.nif }}</p>
-                <a class="btn btn-primary" href="{{ path('taller_reparacio_backend_formEditar_clients', {nif:c.nif}) }}">Editar</a>
-                <a class="btn btn-danger" href="{{ path('taller_reparacio_backend_eliminar_clients', {nif:c.nif}) }}" onclick="confirm('Estàs segur?')">Eliminar</a>
+            <div class="col-sm-6 col-lg-3 col-md-4 text-center panel panel-info" style="margin-bottom:20px;">
+                <div class="panel-body">
+                    <img class="img-responsive" src={{ c.foto }} style="width:100%;" />
+                </div>
+                <div class="panel-heading">
+                    <h3>{{ c.nom }} {{ c.cognom }}</h3>
+                    <p>{{ c.nif }}</p>
+                    <a class="btn btn-primary" href="{{ path('taller_reparacio_backend_formEditar_clients', {nif:c.nif}) }}">Editar</a>
+                    <a class="btn btn-danger" href="{{ path('taller_reparacio_backend_eliminar_clients', {nif:c.nif}) }}" onclick="confirm('Estàs segur?')">Eliminar</a>
+                </div>
             </div>
         {% endfor %}
     </div>

@@ -29,7 +29,7 @@ class ClientsController extends Controller
     public function formEditarClientAction($nif)
     {
         $em = $this->getDoctrine()->getManager();
-        $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
+        $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneBynif($nif);
 
         if (!$client) {
             throw $this->createNotFoundException(
@@ -49,7 +49,7 @@ class ClientsController extends Controller
             $nif = $request->request->get('nif');
 
             $em = $this->getDoctrine()->getManager();
-            $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
+            $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneBynif($nif);
 
             $cognom = $request->request->get('cognom');
             $nom = $request->request->get('nom');
@@ -82,7 +82,7 @@ class ClientsController extends Controller
     public function eliminarAction($nif)
     {
         $em = $this->getDoctrine()->getManager();
-        $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneByNIF($nif);
+        $client = $em->getRepository('TallerReparacioBackendBundle:Clients')->findOneBynif($nif);
 
         if (!$client) {
             throw $this->createNotFoundException(
