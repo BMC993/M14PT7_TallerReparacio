@@ -60,12 +60,12 @@ class ReparacionsController extends Controller
                 //$Reparacions->setDescripcio($request->request->get('descripcio'));
 
 
-                $Reparacions->setCodiReparacio($codiReparacio);
+                $Reparacions->setCodi($codiReparacio);
                 $Reparacions->setDescripcio($descripcio);
-                $Realitzades->setDataentrada($dataEntrada);
-                $Realitzades->setDatasortida($dataSortida);
+                $Realitzades->setDataentrada(new \DateTime($dataEntrada));
+                $Realitzades->setDatasortida(new \DateTime($dataSortida));
                 $Realitzades->setHoresdedicades($horesDedicades);
-                $Realitzades->setVehicleMatricula($matriculaVehicle);
+                //$Realitzades->setVehicleMatricula($matriculaVehicle);
 
                 $ok = true;
 
