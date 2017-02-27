@@ -4,17 +4,17 @@
 	<div class="container">
 		<div class="contingut row">
 			<div class="col-xs-12">
-				<form action="{{ path('taller_reparacio_backend_editar_vehicles') }}" method="post">
+				<form action="{{ path('taller_reparacio_backend_editar_reparacions') }}" method="post">
 					<div class="form-grup">
 						<h2>{{ titol }}</h2>
-						Codi: <input class="form-control" type="text" name="codi" value="{{ r.codi }}"><br/>
-						Descripció: <input class="form-control" type="text" name="descripcio" value="{{ r.descripcio }}"></br>
-						Vehicle (matrícula): <select name="vehicles">
+						Codi: <input class="form-control" type="text" name="codi" readonly value="{{ reparacio.codi }}"><br/>
+						Descripció: <input class="form-control" type="text" name="descripcio" value="{{ reparacio.descripcio }}"></br>
+						{#Vehicle (matrícula): <select name="vehicles">
 							{% for v in vehicles %}
 								<option value="{{ v.matricula }}">{{ v.matricula }}</option>
        						{% endfor %}
-						</select><br/><br/>
-						<input class="btn btn-default" type="submit" name="submit" value="Crear">
+						</select><br/><br/>#}
+						<input class="btn btn-default" type="submit" name="submit" value="Modificar">
 					</div>
 				</form>
 			</div>

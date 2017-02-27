@@ -19,7 +19,7 @@
         {% for r in reparacions %}
             <div class="col-sm-6 col-lg-3 col-md-4 text-center panel panel-info" style="margin-bottom:20px;border:none;">
                 <div class="panel-heading">
-                    <h3>{{ r.codi }}</h3>
+                    <h3>Codi: <b>{{ r.codi }}</b></h3>
                     <p>{{ r.descripcio }}</p>
                     <a class="btn btn-primary" href="{{ path('taller_reparacio_backend_formEditar_reparacions', {codi:r.codi}) }}">Editar</a>
                     <a class="btn btn-danger" href="{{ path('taller_reparacio_backend_eliminar_reparacions', {codi:r.codi}) }}">Eliminar</a>

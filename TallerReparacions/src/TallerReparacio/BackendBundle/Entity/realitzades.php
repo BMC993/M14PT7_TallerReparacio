@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Realitzades
  *
- * @ORM\Table(name="realitzades", uniqueConstraints={@ORM\UniqueConstraint(name="nif_client", columns={"nif_client"})}, indexes={@ORM\Index(name="vehicle_matricula", columns={"vehicle_matricula"})})
+ * @ORM\Table(name="realitzades", uniqueConstraints={@ORM\UniqueConstraint(name="nif_client", columns={"codi_reparacio"})}, indexes={@ORM\Index(name="vehicle_matricula", columns={"vehicle_matricula"})})
  * @ORM\Entity
  */
 class Realitzades
@@ -34,13 +34,6 @@ class Realitzades
     private $horesdedicades;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="nif_client", type="string", length=10, nullable=false)
-     */
-    private $nifClient;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer")
@@ -48,6 +41,16 @@ class Realitzades
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
+
+    /**
+     * @var \TallerReparacio\BackendBundle\Entity\Reparacions
+     *
+     * @ORM\ManyToOne(targetEntity="TallerReparacio\BackendBundle\Entity\Reparacions")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="codi_reparacio", referencedColumnName="codi")
+     * })
+     */
+    private $codiReparacio;
 
     /**
      * @var \TallerReparacio\BackendBundle\Entity\Vehicles
@@ -134,30 +137,6 @@ class Realitzades
     }
 
     /**
-     * Set nifClient
-     *
-     * @param string $nifClient
-     *
-     * @return Realitzades
-     */
-    public function setNifClient($nifClient)
-    {
-        $this->nifClient = $nifClient;
-
-        return $this;
-    }
-
-    /**
-     * Get nifClient
-     *
-     * @return string
-     */
-    public function getNifClient()
-    {
-        return $this->nifClient;
-    }
-
-    /**
      * Get id
      *
      * @return integer
@@ -165,6 +144,30 @@ class Realitzades
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set codiReparacio
+     *
+     * @param \TallerReparacio\BackendBundle\Entity\Reparacions $codiReparacio
+     *
+     * @return Realitzades
+     */
+    public function setCodiReparacio(\TallerReparacio\BackendBundle\Entity\Reparacions $codiReparacio = null)
+    {
+        $this->codiReparacio = $codiReparacio;
+
+        return $this;
+    }
+
+    /**
+     * Get codiReparacio
+     *
+     * @return \TallerReparacio\BackendBundle\Entity\Reparacions
+     */
+    public function getCodiReparacio()
+    {
+        return $this->codiReparacio;
     }
 
     /**

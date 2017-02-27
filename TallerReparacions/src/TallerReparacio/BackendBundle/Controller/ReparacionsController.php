@@ -7,6 +7,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use TallerReparacio\BackendBundle\Entity\Clients;
 use TallerReparacio\BackendBundle\Entity\Vehicles;
 use TallerReparacio\BackendBundle\Entity\Reparacions;
+use TallerReparacio\BackendBundle\Entity\Realitzades;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -38,26 +39,54 @@ class ReparacionsController extends Controller
 
     public function crearReparacioAction(Request $request)
     {
-        // crea una categoria y le asigna algunos datos ficticios para este ejemplo
         $em = $this->getDoctrine()->getManager();
         $Reparacions = new Reparacions();
-        //$Vehicles = new Vehicles();
-        // $category->setName('tato');
-        
+        $Realitzades = new Realitzades();
+
+        $codiReparacio = $request->request->get('codi');
+        $descripcio = $request->request->get('descripcio');
+        $dataEntrada = $request->request->get('dataEntrada');
+        $dataSortida = $request->request->get('dataSortida');
+        $horesDedicades = $request->request->get('horesDedicades');
+        $matriculaVehicle = $request->request->get('matriculaVehicle');
+
         if($request != null){
-            $Reparacions->setCodi($request->request->get('codi'));
-            $Reparacions->setDescripcio($request->request->get('descripcio'));
 
-            // ... perform some action, such as saving the task to the database
-            // for example, if Category is a Doctrine entity, save it!
-            
-            $em->persist($Reparacions);
-           // $em->persist($Vehicles);
-            $em->flush();
+            if ($codiReparacio != '' && $descripcio != '' && $dataEntrada != '' && $dataSortida != '' && $horesDedicades != '' && $matriculaVehicle != '') {
 
-            return $this->render('TallerReparacioBackendBundle:Default:reparacioAdded.html.twig', array(
-            'titol' => 'Reparació creada!',
-            'r' => $Reparacions));
+
+
+                //$Reparacions->setCodi($request->request->get('codi'));
+                //$Reparacions->setDescripcio($request->request->get('descripcio'));
+
+
+                $Reparacions->setCodiReparacio($codiReparacio);
+                $Reparacions->setDescripcio($descripcio);
+                $Realitzades->setDataentrada($dataEntrada);
+                $Realitzades->setDatasortida($dataSortida);
+                $Realitzades->setHoresdedicades($horesDedicades);
+                $Realitzades->setVehicleMatricula($matriculaVehicle);
+
+                $ok = true;
+
+                $em->persist($Reparacions);
+                $em->persist($Realitzades);
+                $em->flush();
+
+            } else {
+                $ok = false;
+            }
+
+            if ($ok) {
+                return $this->render('TallerReparacioBackendBundle:Default:reparacioAdded.html.twig', array(
+                    'titol' => 'Reparació creada!',
+                    'reparacio' => $Reparacions,
+                    'realitzades' => $Realitzades));
+            } else {
+                return $this->render('TallerReparacioBackendBundle:Default:reparacioNotAdded.html.twig', array(
+                    'titol' => 'No has introduït les dades correctament'));
+
+            }
         }
     }
 
@@ -69,10 +98,10 @@ class ReparacionsController extends Controller
         if (!$reparacio) {
             throw $this->createNotFoundException(
                 'No existeix la reparacio amb el codi: '.$codi
-            );
+                );
         }
 
-        return $this->render('TallerReparacioBackendBundle:Default:formEditarVehicle.html.twig', array(
+        return $this->render('TallerReparacioBackendBundle:Default:formEditarReparacio.html.twig', array(
             'titol' => 'Editar reparacio',
             'reparacio' => $reparacio));
     }
@@ -81,24 +110,33 @@ class ReparacionsController extends Controller
     {
         if($request != null){
 
-            $matricula = $request->request->get('matricula');
+            $codi = $request->request->get('codi');
 
             $em = $this->getDoctrine()->getManager();
-            $vehicle = $em->getRepository('TallerReparacioBackendBundle:Vehicles')->findOneBymatricula($matricula);
+            $reparacio = $em->getRepository('TallerReparacioBackendBundle:Reparacions')->findOneBycodi($codi);
 
-            $marca = $request->request->get('marca');
-            $model = $request->request->get('model');
-            $tipusCombustible = $request->request->get('tipusCombustible');
+            $descripcio = $request->request->get('descripcio');
+            //$model = $request->request->get('model');
+            //$tipusCombustible = $request->request->get('tipusCombustible');
 
-            if ($marca != '' && $model != '' && $tipusCombustible != '') {
-                $vehicle->setMarca($marca);
-                $vehicle->setModel($model);
-                $vehicle->setTipusCombustible($tipusCombustible);
+            if ($descripcio != '') {
+                $reparacio->setDescripcio($descripcio);
                 $ok = true;
             } else {
                 $ok = false;
             }
 
+            $em->flush();
+
+            if ($ok) {
+                return $this->render('TallerReparacioBackendBundle:Default:reparacioAdded.html.twig', array(
+                    'titol' => 'Reparació editada correctament!',
+                    'reparacio' => $reparacio));
+            } else {
+                return $this->render('TallerReparacioBackendBundle:Default:reparacioAdded.html.twig', array(
+                    'titol' => 'No has editat la reparació correctament...',
+                    'reparacio' => $reparacio));
+            }
         }
     }
 
@@ -110,7 +148,7 @@ class ReparacionsController extends Controller
         if (!$reparacio) {
             throw $this->createNotFoundException(
                 'No existeix la reparació amb el codi: '.$codi
-            );
+                );
         }
         $em->remove($reparacio);
         $em->flush();

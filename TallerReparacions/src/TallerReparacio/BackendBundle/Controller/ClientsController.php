@@ -150,9 +150,9 @@ class ClientsController extends Controller
 
                 // ... perform some action, such as saving the task to the database
                 // for example, if Category is a Doctrine entity, save it!
-            $em->persist($Clients);
-            $em->persist($Vehicles);
-            $em->flush();
+                $em->persist($Clients);
+                $em->persist($Vehicles);
+                $em->flush();
                 
             } else {
                 $ok = false;

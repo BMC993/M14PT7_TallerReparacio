@@ -1,5 +1,5 @@
 {% extends "TallerReparacioBackendBundle:Default:index.html.twig " %}
-{% block title %}Reparació modificat{% endblock %}
+{% block title %}Reparació modificada{% endblock %}
     {% block page_content %}
         <!-- Page Content -->
         <div class="container">
@@ -7,10 +7,25 @@
                 <div class="col-sm-12 col-lg-12 col-md-12">
                     <h3 class="">{{ titol }}</h3>
                 </div>
-                <div class="col-sm-3 col-lg-3 col-md-3 text-center">
-                    <h3>{{ r.codi }}</h3>
-                    <p>{{ r.descripcio }}</p>
+                <div class="col-sm-3 col-lg-3 col-md-3 text-center panel panel-info" style="margin-bottom:20px;border:none;">
+                    <div class="panel-heading">
+                        <h3>Codi: <b>{{ reparacio.codi }}</b></h3>
+                        <p>{{ reparacio.descripcio }}</p>
+                    </div>
                 </div>
             </div>
         </div>
         {% endblock %}
+
+
+
+
+
+
+
+
+
+
+MODIFICAR EL REPARACIOADDED I 
+
+I PROVAR EL REPARACIONS.CONTROLLER JAJAJJA, NOMÉS HE FET UN COMMIT

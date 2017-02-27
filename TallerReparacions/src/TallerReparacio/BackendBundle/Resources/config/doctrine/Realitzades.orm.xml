@@ -5,7 +5,7 @@
       <index name="vehicle_matricula" columns="vehicle_matricula"/>
     </indexes>
     <unique-constraints>
-      <unique-constraint name="nif_client" columns="nif_client"/>
+      <unique-constraint name="nif_client" columns="codi_reparacio"/>
     </unique-constraints>
     <id name="id" type="integer" column="id">
       <generator strategy="IDENTITY"/>
@@ -17,11 +17,11 @@
         <option name="unsigned"/>
       </options>
     </field>
-    <field name="nifClient" type="string" column="nif_client" length="10" nullable="false">
-      <options>
-        <option name="fixed"/>
-      </options>
-    </field>
+    <many-to-one field="codiReparacio" target-entity="Reparacions" fetch="LAZY">
+      <join-columns>
+        <join-column name="codi_reparacio" referenced-column-name="codi"/>
+      </join-columns>
+    </many-to-one>
     <many-to-one field="vehicleMatricula" target-entity="Vehicles" fetch="LAZY">
       <join-columns>
         <join-column name="vehicle_matricula" referenced-column-name="matricula"/>

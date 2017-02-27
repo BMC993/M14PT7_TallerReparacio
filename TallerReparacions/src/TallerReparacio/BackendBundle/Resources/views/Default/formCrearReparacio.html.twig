@@ -7,9 +7,15 @@
 				<form action="{{ path('taller_reparacio_backend_crear_reparacions') }}" method="post">
 					<div class="form-grup">
 						<h2>Dades Reparació</h2>
-						Codi: <input class="form-control" type="text" name="codi"><br/>
+						Codi reparació: <input class="form-control" type="text" name="codi"><br/>
 						Descripció: <input class="form-control" type="text" name="descripcio"></br>
-						Vehicle (matrícula): <select name="vehicles">
+						Data entrada:<br/>
+						<input type="text" name="dataEntrada" max="2017-01-01"><br/>
+						Data sordia:<br/>
+						<input type="text" name="dataSortida"><br/>
+						Hores dedicades:<br/>
+						<input type="text" name="horesDedicades"><br/>
+						Vehicle (matrícula): <select name="matriculaVehicle">
 							{% for v in vehicles %}
 								<option value="{{ v.matricula }}">{{ v.matricula }}</option>
        						{% endfor %}
