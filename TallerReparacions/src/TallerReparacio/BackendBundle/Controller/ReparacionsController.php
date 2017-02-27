@@ -101,5 +101,21 @@ class ReparacionsController extends Controller
 
         }
     }
+
+    public function eliminarAction($codi)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $reparacio = $em->getRepository('TallerReparacioBackendBundle:Reparacions')->findOneBycodi($codi);
+
+        if (!$reparacio) {
+            throw $this->createNotFoundException(
+                'No existeix la reparació amb el codi: '.$codi
+            );
+        }
+        $em->remove($reparacio);
+        $em->flush();
+
+        return $this->redirectToRoute('taller_reparacio_backend_consultar_reparacions');
+    }
 }
 
