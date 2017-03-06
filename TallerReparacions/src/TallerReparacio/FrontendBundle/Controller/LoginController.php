@@ -5,6 +5,7 @@ namespace TallerReparacio\FrontendBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use TallerReparacions\BackendBundle\Entity\Usuaris;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class LoginController extends Controller
 {
@@ -19,22 +20,27 @@ class LoginController extends Controller
             $username = $request->request->get('username');
             $password = $request->request->get('password');
 
-        $usuaris = $this->getDoctrine()->getRepository('TallerReparacioBackendBundle:Usuaris');//->findAll();
+            //$cookie = new Cookie('username', $username, (time() + 3600 * 24 * 7), '/');
+            //$response = new Response();
+            //$response->headers->setCookie($cookie);
+            //$response->send();
 
-        $trobat = $usuaris->findOneBy(array(
-            'nom' => $username, 
-            'password' => $password));
-        
+            $usuaris = $this->getDoctrine()->getRepository('TallerReparacioBackendBundle:Usuaris');//->findAll();
 
-        if($trobat != null){
-            return $this->render('TallerReparacioBackendBundle:Default:loginSatisfactori.html.twig', array(
-                'titol' => 'Benvingut',
-                'usuari' => $username));
-        }else{
-            return $this->render('TallerReparacioFrontendBundle:Default:loginIncorrecte.html.twig', array(
-                'titol' => 'Ops!'));
+            $trobat = $usuaris->findOneBy(array(
+                'nom' => $username, 
+                'password' => $password));
+            
+
+            if($trobat != null){
+                return $this->render('TallerReparacioBackendBundle:Default:loginSatisfactori.html.twig', array(
+                    'titol' => 'Benvingut',
+                    'usuari' => $username));
+            }else{
+                return $this->render('TallerReparacioFrontendBundle:Default:loginIncorrecte.html.twig', array(
+                    'titol' => 'Ops!'));
+            }
         }
+        /* return $this->render('TallerReparacioFrontendBundle:Default:formLogin.html.twig') */;
     }
-    /* return $this->render('TallerReparacioFrontendBundle:Default:formLogin.html.twig') */;
-}
 }
