@@ -22,6 +22,7 @@ class ReparacionsController extends Controller
     public function mostrarAction()
     {
         $reparacions = $this->getDoctrine()->getRepository('TallerReparacioBackendBundle:Reparacions')->findAll();
+        //$realitzades = $this->getDoctrine()->getRepository('TallerReparacioBackendBundle:Realitzades')->findAll();
 
         return $this->render('TallerReparacioBackendBundle:Default:reparacions.html.twig', array(
             'titol' => 'Llistat de reparacions',
@@ -54,18 +55,19 @@ class ReparacionsController extends Controller
 
             if ($codiReparacio != '' && $descripcio != '' && $dataEntrada != '' && $dataSortida != '' && $horesDedicades != '' && $matriculaVehicle != '') {
 
-
-
                 //$Reparacions->setCodi($request->request->get('codi'));
                 //$Reparacions->setDescripcio($request->request->get('descripcio'));
-
+                
+                $em = $this->getDoctrine()->getManager();
+                $vehicle = $em->getRepository('TallerReparacioBackendBundle:Vehicles')->findOneBymatricula($matriculaVehicle);
 
                 $Reparacions->setCodi($codiReparacio);
                 $Reparacions->setDescripcio($descripcio);
                 $Realitzades->setDataentrada(new \DateTime($dataEntrada));
                 $Realitzades->setDatasortida(new \DateTime($dataSortida));
                 $Realitzades->setHoresdedicades($horesDedicades);
-                //$Realitzades->setVehicleMatricula($matriculaVehicle);
+                $Realitzades->setCodiReparacio($Reparacions);
+                $Realitzades->setVehicleMatricula($vehicle);
 
                 $ok = true;
 

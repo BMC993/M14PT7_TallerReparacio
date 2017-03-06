@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-03-2017 a las 03:21:53
+-- Tiempo de generación: 23-02-2017 a las 16:35:40
 -- Versión del servidor: 10.1.19-MariaDB
 -- Versión de PHP: 7.0.13
 
@@ -37,18 +37,20 @@ CREATE TABLE IF NOT EXISTS `clients` (
   `foto` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_C82E743B416931` (`NIF`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `clients`
 --
 
 INSERT INTO `clients` (`NIF`, `nom`, `cognom`, `id`, `foto`) VALUES
-('3333333T', 'Maria', 'Garcia', 4, 'http://www.italymagazine.com/sites/default/files/story/mona_lisa_0.jpg'),
+('000000T', 'josep', 'pocurullo', 1, 'https://sherights.files.wordpress.com/2014/04/gurbaksh-500x500.jpeg'),
+('111111T', 'Bernabé', 'Moc', 2, 'http://gregferro.com/wp-content/uploads/2013/07/gf-headshot-full-face-500x500.jpg'),
+('3333333T', 'Maria', 'Mocos', 4, 'http://www.italymagazine.com/sites/default/files/story/mona_lisa_0.jpg'),
 ('34123413B', 'Rubert', 'Navarro', 5, 'http://inyourfaceny.org/wp-content/uploads/2016/09/NaughtonJamesNew-500x500.jpg'),
-('12346664t', 'David', 'Gigi', 12, 'http://www.menshairstylestoday.com/wp-content/uploads/2016/10/Oval-Face-Brush-Back.jpg'),
-('12334532', 'Marc', 'Zukk', 15, 'https://sherights.files.wordpress.com/2014/04/gurbaksh-500x500.jpeg'),
-('44444444S', 'Josep', 'Pocu', 18, 'https://media.kairos.com/team/Neil_Pitts.jpeg');
+('123', 'Josep', 'Pocu', 10, 'https://media.kairos.com/team/Neil_Pitts.jpeg'),
+('1234', 'David', 'Gigi EASY', 12, 'http://www.menshairstylestoday.com/wp-content/uploads/2016/10/Oval-Face-Brush-Back.jpg'),
+('12334532', 'Marc', 'Zuk', 15, 'https://sherights.files.wordpress.com/2014/04/gurbaksh-500x500.jpeg');
 
 -- --------------------------------------------------------
 
@@ -63,18 +65,11 @@ CREATE TABLE IF NOT EXISTS `realitzades` (
   `dataSortida` date NOT NULL,
   `horesDedicades` int(11) NOT NULL,
   `vehicle_matricula` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `codi_reparacio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `nif_client` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `nif_client` (`codi_reparacio`),
+  UNIQUE KEY `nif_client` (`nif_client`),
   KEY `vehicle_matricula` (`vehicle_matricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `realitzades`
---
-
-INSERT INTO `realitzades` (`id`, `dataEntrada`, `dataSortida`, `horesDedicades`, `vehicle_matricula`, `codi_reparacio`) VALUES
-(1, '2017-02-07', '2017-02-08', 32, '1234 NNN', '111111');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -89,17 +84,7 @@ CREATE TABLE IF NOT EXISTS `reparacions` (
   `descripcio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UNIQ_47FFB4417EA37CB3` (`codi`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Volcado de datos para la tabla `reparacions`
---
-
-INSERT INTO `reparacions` (`id`, `codi`, `descripcio`) VALUES
-(8, '111111', 'Capa de pintura i rodes inflades'),
-(16, '222222', 'Arreglar frenos'),
-(17, '333333', 'Arreglar motor'),
-(18, '4444444', 'Netejar filtre');
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -149,12 +134,12 @@ CREATE TABLE IF NOT EXISTS `vehicles` (
 --
 
 INSERT INTO `vehicles` (`id`, `matricula`, `marca`, `model`, `tipusCombustible`, `clients_nif`) VALUES
-(1, '1234', 'Ford', 'Mondeo', 1, NULL),
+(1, '1234', 'Ford', 'Mondeo', 2, NULL),
+(3, '222222', 'Ford', 'Caca Bernabé2', 1, NULL),
 (4, '5476 BBB', 'Ford', 'Focus', 1, NULL),
 (5, '1234 NNN', 'Seat', 'Ibiza', 1, NULL),
 (6, '5656 BBB', 'Seat', 'León', 1, NULL),
-(8, '6969 JCD', 'Seat', 'Ibiza', 2, NULL),
-(9, '4341 BBB', 'Seat', 'León', 3, NULL);
+(8, '6969 JCD', 'Seat', 'Ibiza', 2, NULL);
 
 --
 -- Restricciones para tablas volcadas
@@ -164,7 +149,6 @@ INSERT INTO `vehicles` (`id`, `matricula`, `marca`, `model`, `tipusCombustible`,
 -- Filtros para la tabla `realitzades`
 --
 ALTER TABLE `realitzades`
-  ADD CONSTRAINT `realitzades_codi_reparacio` FOREIGN KEY (`codi_reparacio`) REFERENCES `reparacions` (`codi`) ON UPDATE CASCADE,
   ADD CONSTRAINT `realitzades_ibfk_1` FOREIGN KEY (`vehicle_matricula`) REFERENCES `vehicles` (`matricula`) ON UPDATE CASCADE;
 
 --
