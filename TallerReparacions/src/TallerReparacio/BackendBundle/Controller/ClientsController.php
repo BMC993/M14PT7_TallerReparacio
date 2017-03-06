@@ -131,7 +131,8 @@ class ClientsController extends Controller
                 $Vehicles->setMarca($marca);
                 $Vehicles->setModel($model);
                 $Vehicles->setTipusCombustible($tipusCombustible);
-                $Clients->setVehicle($Vehicles);
+                //$Vehicles->setClientsNif($Clients);
+                //$Clients->setVehicle($Vehicles);
 
                 $ok = true;
 
